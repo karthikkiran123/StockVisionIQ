@@ -1,0 +1,373 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cart_count_bloc %}
+    {{ cart_items }}
+{% endblock %}
+{% block content %}
+<style>
+.heading-banner-area {
+    background: linear-gradient(135deg, #000000 30%, #001f3f 100%);
+    border: 0;
+    box-shadow: 0 0 80px rgba(0, 255, 255, 0.7); /* Stronger neon glow effect */
+    position: relative;
+    overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Title Glow and Animation */
+.heading-banner-title h2 {
+    font-size: 3rem; /* Larger font size */
+    color: #00ffff;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); /* Enhanced glow */
+    font-family: 'Orbitron', sans-serif;
+    animation: neonGlow 2s ease-in-out infinite alternate; /* Pulsating neon glow */
+}
+
+/* Pulsating glow animation */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 60px rgba(0, 255, 255, 0.8);
+    }
+}
+
+.heading-banner-content p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Adding rotating light beams effect */
+.heading-banner-area:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 200%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent 70%);
+    transform: translateX(-50%);
+    animation: rotateBeams 10s linear infinite; /* Rotating beam animation */
+}
+
+@keyframes rotateBeams {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+/* Optional: Pulsating glow background */
+.neon-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.3);
+    animation: glowPulse 3s infinite alternate;
+    z-index: 1;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+.breadcumbs ul li a {
+    font-size: 1.1rem;
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.breadcumbs ul li a:hover {
+    color: #00bfff;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9), 0 0 15px rgba(0, 191, 255, 0.7);
+}
+
+.heading-banner-area:before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(0, 255, 255, 0.4), 0 0 120px rgba(0, 255, 255, 0.3);
+    animation: floating 5s infinite ease-in-out;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+
+
+    .login-area {
+        background: #000000; /* Deeper dark background for contrast */
+        padding: 80px 0;
+        box-shadow: inset 0 0 60px rgba(0, 255, 255, 0.1); /* Enhanced neon glow effect */
+    }
+  
+    .customer-login {
+        background: #000000; /* Dark background for forms */
+        border: 1px solid #0ff;
+        padding: 50px;
+        box-shadow: 0px 10px 25px rgba(0, 255, 255, 0.6); /* Stronger neon shadow */
+        margin-bottom: 40px;
+        border-radius: 10px; /* Rounded corners for a sleek look */
+        transition: all 0.3s ease;
+        min-height: 450px; /* Ensures equal height */
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+    }
+  
+    .customer-login:hover {
+        box-shadow: 0px 15px 40px rgba(0, 255, 255, 0.9); /* Neon pulse on hover */
+        transform: translateY(-8px); /* Slight lift for futuristic feel */
+    }
+  
+    .customer-login h4 {
+        font-size: 28px;
+        font-weight: 700;
+        color: #0ff;
+        margin-bottom: 30px;
+        text-shadow: 0px 0px 15px rgba(0, 255, 255, 0.8);
+    }
+  
+    .customer-login p {
+        color: #bbb;
+        margin-bottom: 25px;
+    }
+  
+    .customer-login input[type="text"],
+    .customer-login input[type="password"] {
+        width: 100%;
+        padding: 16px;
+        margin-bottom: 20px;
+        border: 1px solid #0ff;
+        border-radius: 8px;
+        background-color: #333;
+        color: #0ff;
+        box-shadow: 0px 0px 10px rgba(0, 255, 255, 0.5);
+        transition: all 0.3s ease;
+    }
+  
+    .customer-login input[type="text"]:focus,
+    .customer-login input[type="password"]:focus {
+        box-shadow: 0px 0px 20px rgba(0, 255, 255, 0.8);
+        outline: none;
+        border-color: #00cccc;
+    }
+  
+    .submit-button {
+        background-color: #0ff;
+        color: #111;
+        padding: 12px 30px; /* Adjusted padding */
+        border-radius: 8px;
+        text-align: center;
+        font-weight: 700;
+        font-size: 18px;
+        cursor: pointer;
+        box-shadow: 0px 8px 20px rgba(0, 255, 255, 0.7);
+        transition: background-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        display: inline-flex; /* Ensures flex behavior */
+        justify-content: center; /* Center text horizontally */
+        align-items: center; /* Center text vertically */
+        line-height: 1; /* Ensures the text height doesn't push it down */
+        border: none;
+        vertical-align: middle; /* Aligns the button itself within any container */
+    }
+  
+    .submit-button:hover {
+        background-color: #0cc;
+        box-shadow: 0px 15px 35px rgba(0, 204, 204, 0.9);
+        transform: scale(1.05); /* Slight scale effect on hover */
+    }
+
+    #password-strength {
+        font-size: 16px;
+        color: #0ff;
+        margin-bottom: 15px;
+        text-shadow: 0px 0px 10px rgba(0, 255, 255, 0.7);
+    }
+
+    .form-row {
+        display: flex;
+        gap: 20px;
+        margin-bottom: 20px;
+    }
+
+    .form-row input {
+        flex: 1;
+    }
+
+    .form-row input:last-child {
+        margin-left: 0;
+    }
+    
+    .single-line {
+        margin-bottom: 20px;
+    }
+
+    .single-line input {
+        width: 100%;
+    }
+    .text-neon {
+        color: #00ffff; /* Neon cyan color */
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.6); /* Neon glow effect */
+    }
+
+    .register-form {
+    padding: 30px; /* Decrease padding for smaller size */
+    min-height: 350px; /* Match height of the login container */
+}
+
+.button-container {
+    display: flex;                 /* Use flexbox for centering */
+    justify-content: center;       /* Center the button horizontally */
+    margin-top: 20px;             /* Add space above the button */
+}
+</style>
+  
+<!-- HEADING-BANNER START -->
+<div class="heading-banner-area overlay-bg" style="height: 9cm; position: relative;"> <!-- Added position relative -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="heading-banner" style="padding-top: 2cm;"> <!-- Adjusted padding -->
+                    <div class="heading-banner-title text-center">
+                        <h2 class="text-neon">Empower Your Stock Decisions with Real-Time Insights</h2>
+                    </div>
+                    <div class="heading-banner-content text-center mt-4">
+                        <p class="text-light">Unlock comprehensive stock details, news, expert insights, and future predictions all in one place.</p>
+                    </div>
+                    <!-- Breadcrumbs positioned at bottom left -->
+                    <div class="breadcumbs pb-15 text-left" style="position: absolute; bottom: 10px; left: 200px;">
+                        <ul class="d-inline-block mb-0" style="list-style: none; padding: 0; margin: 0;">
+                            <li style="display: inline;"><a href="/" class="text-neon">Home</a></li>
+                            <li style="display: inline; margin: 0 5px;"><span class="text-light">></span></li>
+                            <li style="display: inline;" class="text-neon">Register/Login</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- HEADING-BANNER END -->
+
+<!-- SHOPPING-CART-AREA START -->
+<div class="login-area pt-80 pb-80">
+    <div id="particles-js" style="position: absolute; width: 100%; height: 100%; z-index: 0;"></div>
+    <div class="container" style="position: relative; z-index: 1;">
+        <div class="row">
+            <div class="col-lg-6">
+                <div class="customer-login text-left">
+                    <h4 class="title-1 text-uppercase mb-30">Registered Users</h4>
+                    <p class="text-gray">If you have an account with us, Please login!</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <input type="text" placeholder="Email here..." name="email">
+                        <input type="password" placeholder="Password" name="password">
+                        <!-- <p><a href="#" class="text-gray">Forget your password?</a></p> -->
+                        <p>
+                            {% if messages %}
+                                {% for message in messages %}
+                                    {{ message }}
+                                {% endfor %}
+                            {% endif %}
+                        </p>
+                        <div class="button-container">
+                        <input type="submit" data-text="login" class="button-one submit-button mt-15" name="auth_action" value="login" style="border: none;" />
+                        </div>
+                    </form>
+                </div>                    
+            </div>
+            <div class="col-lg-6">
+                <div class="customer-login register-form text-left">
+                    <h4 class="title-1 text-uppercase mb-30">New Users</h4>
+                    <p class="text-gray">If you don't have an account with us, Please Register!</p>
+                    <form method="post">
+                        {% csrf_token %}
+                        <div class="form-row">
+                            <input type="text" placeholder="Your first name here..." name="fname" required>
+                            <input type="text" placeholder="Your last name here..." name="lname" required>
+                        </div>
+                        <div class="single-line">
+                            <input type="text" placeholder="Email address here..." name="email" required>
+                        </div>
+                        <div class="form-row">
+                            <input type="password" placeholder="Password" name="password" id="password" required>
+                            <input type="password" placeholder="Confirm password" name="cpassword" required>
+                        </div>
+                        <div id="password-strength" style="margin-bottom: 15px;"></div>
+                        <div class="button-container">
+                        <input type="submit" data-text="register" class="button-one submit-button mt-15" name="auth_action" value="register" style="border: none;">
+                        </div>
+                    </form>
+                </div>                    
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var passwordInput = document.getElementById('password');
+        var passwordStrength = document.getElementById('password-strength');
+
+        passwordInput.addEventListener('input', function () {
+            var strength = getPasswordStrength(passwordInput.value);
+            passwordStrength.innerHTML = strength.message;
+            passwordStrength.style.color = strength.color;
+        });
+
+        function getPasswordStrength(password) {
+            var strength = { message: "", color: "" };
+            var regexes = [
+                /[a-z]/, // lowercase letter
+                /[A-Z]/, // uppercase letter
+                /[0-9]/, // digit
+                /[^A-Za-z0-9]/ // special character
+            ];
+            var passed = 0;
+            regexes.forEach(function(regex) {
+                if (regex.test(password)) {
+                    passed++;
+                }
+            });
+            if (password.length >= 8 && passed === 4) {
+                strength.message = "Strong";
+                strength.color = "#0f0"; // Green
+            } else if (password.length >= 6 && passed >= 3) {
+                strength.message = "Medium";
+                strength.color = "#ff0"; // Yellow
+            } else {
+                strength.message = "Weak";
+                strength.color = "#f00"; // Red
+            }
+            return strength;
+        }
+    });
+</script>
+
+
+
+
+{% endblock %}

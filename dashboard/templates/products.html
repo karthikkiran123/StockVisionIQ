@@ -1,0 +1,42 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                {% if "Reported" != type %}
+                    <a href="{% url 'admin_add_product' %}"><button class="btn btn-primary" style="float: right;">Add Product</button></a>
+                {% endif %}
+                <h1>{{type}} Products</h1>
+                <div class="table-responsive">
+                    <table class="table">
+                        <thead>
+                            <tr>
+                                <th>#</th>
+                                <th>Title</th>
+                                <th>Price</th>
+                                <th>Type</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for product in products %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                <td>{{ product.name }}</td>
+                                <td>{{ product.final_price }}</td>
+                                <td>{{ product.type }}</td>
+                                <td><a href="{% url 'admin_delete_product' product.id %}"><button class="btn btn-danger">Delete</button></a></td>
+                                {% if "Reported" == type %}
+                                    <td>{{ product.reported }} Reported</td>
+                                {% endif %}
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

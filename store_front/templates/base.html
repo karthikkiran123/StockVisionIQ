@@ -1,0 +1,915 @@
+{% load static %}
+<!doctype html>
+<html class="no-js" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>StockVisionIQ</title>
+    <meta name="description" content="StockVisionIQ">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Place favicon.ico in the root directory -->
+
+    <!-- Google Font -->
+    <link href='https://fonts.googleapis.com/css?family=Lato:400,700,900' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Bree+Serif' rel='stylesheet' type='text/css'>
+
+    <!-- all css here -->
+    <!-- bootstrap v3.3.6 css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/bootstrap.min.css' %}">
+    <!-- animate css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/animate.min.css' %}">
+    <!-- jquery-ui.min css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/jquery-ui.min.css' %}">
+    <!-- meanmenu css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/meanmenu.min.css' %}">
+    <!-- nivo-slider css -->
+    <link rel="stylesheet" href="{% static 'store_front/lib/css/nivo-slider.css' %}">
+    <link rel="stylesheet" href="{% static 'store_front/lib/css/preview.css' %}">
+    <!-- slick css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/slick.min.css' %}">
+    <!-- lightbox css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/lightbox.min.css' %}">
+    <!-- material-design-iconic-font css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/material-design-iconic-font.css' %}">
+    <!-- All common css of theme -->
+    <link rel="stylesheet" href="{% static 'store_front/css/default.css' %}">
+    <!-- style css -->
+    <link rel="stylesheet" href="{% static 'store_front/style.min.css' %}">
+    <!-- shortcode css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/shortcode.css' %}">
+    <!-- responsive css -->
+    <link rel="stylesheet" href="{% static 'store_front/css/responsive.css' %}">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+
+    <style>
+        /* Header */
+        .header {
+            background:#000000; /* Subtle dark gradient for depth */
+            color: #e0e0e0; /* Light gray text for contrast */
+            transition: all .5s ease;
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7), 0 0 60px rgba(0, 255, 255, 0.5); /* Enhanced neon cyan glow effect */
+            position: fixed; /* Keeps the header fixed at the top */
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000; /* Ensure it is above other content */
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -150px;
+            left: -150px;
+            width: 300px;
+            height: 300px;
+            background: radial-gradient(circle, rgba(0, 255, 255, 0.3), transparent 70%); /* Neon cyan radial glow */
+            filter: blur(100px);
+            animation: pulse 8s infinite ease-in-out;
+            z-index: 0;
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+
+            50% {
+                transform: scale(1.2);
+                opacity: 1;
+            }
+
+            100% {
+                transform: scale(1);
+                opacity: 0.8;
+            }
+        }
+
+        /* Container inside header */
+        .header-area .container-fluid {
+            padding: 0 40px;
+        }
+
+        /* Logo */
+        .logo {
+    padding: 20px 0;
+    text-align: center; /* Center align the text */
+}
+
+.logo a {
+    text-decoration: none; /* Remove underline from the link */
+}
+
+.logo span {
+    font-size: 40px;
+    color: #00ff7f; /* Brighter, softer neon green */
+    font-family: 'Orbitron', sans-serif;
+    letter-spacing: 4px;
+    text-transform: uppercase;
+    display: inline-block;
+    position: relative;
+    text-shadow: 0 0 15px rgba(0, 255, 127, 0.8), 0 0 30px rgba(0, 255, 127, 0.6), 0 0 45px rgba(0, 255, 127, 0.4); /* Soft green glow */
+    animation: glitch 2.5s infinite alternate, glow-flicker 2s ease-in-out infinite alternate, color-shift 5s ease-in-out infinite; /* Glitch, flicker, and color-shift */
+    transition: transform 0.3s ease;
+}
+
+/* Subtle neon glow flicker */
+@keyframes glow-flicker {
+    0% {
+        text-shadow: 0 0 10px rgba(0, 255, 127, 0.7), 0 0 20px rgba(0, 255, 127, 0.5), 0 0 40px rgba(0, 255, 127, 0.3);
+    }
+    100% {
+        text-shadow: 0 0 25px rgba(0, 255, 127, 1), 0 0 50px rgba(0, 255, 127, 0.8), 0 0 70px rgba(0, 255, 127, 0.6);
+    }
+}
+
+/* Improved glitch effect */
+@keyframes glitch {
+    0% {
+        transform: skew(0deg);
+        clip-path: inset(0% 0 0% 0);
+    }
+    20% {
+        transform: skew(2deg);
+        clip-path: inset(10% 0 20% 0);
+    }
+    40% {
+        transform: skew(-2deg);
+        clip-path: inset(5% 0 15% 0);
+    }
+    60% {
+        transform: skew(0deg);
+        clip-path: inset(0% 0 0% 0);
+    }
+    80% {
+        transform: skew(1deg);
+        clip-path: inset(12% 0 25% 0);
+    }
+    100% {
+        transform: skew(0deg);
+    }
+}
+
+/* Improved color-shift between neon green and a vibrant red */
+@keyframes color-shift {
+    0%, 50% {
+        color: #00ff7f; /* Brighter neon green */
+        text-shadow: 0 0 20px rgba(0, 255, 127, 0.8), 0 0 40px rgba(0, 255, 127, 0.6), 0 0 60px rgba(0, 255, 127, 0.4);
+    }
+    51%, 100% {
+        color: #ff5e5e; /* Brighter, vibrant red */
+        text-shadow: 0 0 20px rgba(255, 94, 94, 0.8), 0 0 40px rgba(255, 94, 94, 0.6), 0 0 60px rgba(255, 94, 94, 0.4);
+    }
+}
+
+/* Slight zoom and glow increase on hover */
+.logo span:hover {
+    transform: scale(1.1);
+    text-shadow: 0 0 30px rgba(0, 255, 127, 1), 0 0 60px rgba(0, 255, 127, 0.8), 0 0 90px rgba(0, 255, 127, 0.6); /* Bright green on hover */
+}
+
+
+
+
+        /* Header sticky padding */
+        .wrapper {
+            padding-top: 80px; /* Adjust this value based on the header height */
+        }
+
+
+
+/* Navigation */
+.menu-toggle {
+    left: 25px;
+    position: fixed;
+    top: 42px;
+    z-index: 99999999;
+    transition: all .5s ease;
+}
+
+.menu-toggle-2 {
+    top: 27px;
+}
+
+.main-menu {
+    background: #0a0a0a; /* Deep black for the menu background */
+    height: 100%;
+    left: -225px;
+    padding-top: 162px;
+    position: fixed;
+    top: 0;
+    width: 225px;
+    z-index: 9999999;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7); /* Enhanced neon cyan glow effect */
+    overflow: hidden; /* Ensure the holographic effect doesn't overflow */
+}
+
+.main-menu::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.7) 70%, rgba(255, 0, 255, 0.3) 80%, rgba(0, 255, 255, 0.3) 100%); /* Black with neon purple and cyan */
+    transform: translate(-50%, -50%); /* Center the gradient */
+    z-index: -1;
+    filter: blur(80px); /* Apply a blur to enhance the holographic effect */
+    animation: hologram 12s linear infinite; /* Apply the hologram animation */
+}
+
+@keyframes hologram {
+    0% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+    50% { transform: translate(-50%, -50%) scale(1.05); opacity: 0.7; }
+    100% { transform: translate(-50%, -50%) scale(1); opacity: 0.5; }
+}
+
+.main-menu > nav > ul > li > a {
+    background: transparent;
+    color: #e0e0e0; /* Off-white for text */
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    line-height: 45px;
+    padding: 0 0 0 70px;
+    position: relative;
+    text-transform: uppercase;
+    z-index: 1;
+    transition: color 0.3s ease;
+}
+
+.main-menu > nav > ul > li > a::before {
+    background: linear-gradient(135deg, #00f5d4, #00d2ff); /* Neon gradient effect */
+    content: "";
+    height: 100%;
+    left: -100%;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: -1;
+    transition: left 0.3s ease;
+}
+
+.main-menu > nav > ul > li:hover > a {
+    color: #fff; /* White text on hover */
+}
+
+.main-menu > nav > ul > li:hover > a::before {
+    left: 0;
+}
+
+.main-menu ul li .sub-menu {
+    background: #0a0a0a; /* Deep black to match the main menu */
+    border-left: 2px solid #00f5d4; /* Neon cyan border */
+    height: 100%;
+    left: 300px;
+    padding-top: 172px;
+    padding-left: 70px;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: all .3s ease;
+    visibility: hidden;
+    width: 250px;
+    box-shadow: 0 0 30px rgba(0, 245, 212, 0.5); /* Neon glow effect */
+}
+
+.main-menu ul li:hover .sub-menu {
+    left: 100%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.main-menu ul li .sub-menu > ul > li a {
+    color: #e0e0e0; /* Off-white for text */
+    display: block;
+    font-size: 12px;
+    font-weight: 700;
+    line-height: 28px;
+    text-transform: uppercase;
+}
+
+.main-menu ul li .sub-menu > ul > li:hover a {
+    color: #00f5d4; /* Neon cyan for hover effect */
+}
+
+.main-menu ul li .mega-menu {
+    background: #000000; /* Deep black to match the main menu */
+    border-left: 2px solid #00f5d4; /* Neon cyan border */
+    height: 100%;
+    left: 300px;
+    padding-top: 172px;
+    position: absolute;
+    opacity: 0;
+    top: 0;
+    transition: all .3s ease;
+    visibility: hidden;
+    width: 500px;
+    box-shadow: 0 0 30px rgba(0, 245, 212, 0.5); /* Neon glow effect */
+}
+
+.main-menu ul li:hover .mega-menu {
+    left: 100%;
+    opacity: 1;
+    visibility: visible;
+}
+
+.btn-hover:hover {
+    color: #ff00ff;
+    box-shadow: 0 0 15px rgba(255, 0, 255, 0.8);
+}
+
+
+
+
+/* Footer Styles */
+.footer-area {
+    background: #000000; /* Deep black for a clean, futuristic look */
+    color: #e0e0e0; /* Off-white for text */
+    padding: 60px 0;
+    position: relative;
+    overflow: hidden;
+    border-top: 2px solid #00f5d4; /* Cyan border for a sharp effect */
+    box-shadow: 0 0 40px rgba(0, 245, 212, 0.8); /* Stronger outer glow */
+}
+
+.footer-area::before,
+.footer-area::after {
+    content: '';
+    position: absolute;
+    width: 500px; /* Increased size for more impact */
+    height: 500px;
+    background: radial-gradient(circle, rgba(0, 245, 212, 0.4), rgba(0, 245, 212, 0)); /* More intense radial cyan glow effect */
+    filter: blur(200px); /* Stronger blur for pronounced glow */
+    z-index: 0;
+    animation: pulse 5s ease-in-out infinite, rotate 15s linear infinite; /* Faster pulse and rotate animation */
+}
+
+.footer-area::before {
+    top: -250px; /* Positioned further outside to enhance effect */
+    left: -250px;
+}
+
+.footer-area::after {
+    bottom: -250px; /* Positioned further outside to enhance effect */
+    right: -250px;
+    animation: pulse 5s ease-in-out infinite reverse, rotate 15s linear infinite reverse; /* Complementary animation */
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 0.3;
+        transform: scale(0.9);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.2);
+    }
+    100% {
+        opacity: 0.3;
+        transform: scale(0.9);
+    }
+}
+
+@keyframes rotate {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Footer Title */
+.footer-title {
+    color: #00f5d4; /* Neon cyan */
+    font-weight: bold;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 1;
+    text-shadow: 0 0 12px rgba(0, 245, 212, 0.9), 0 0 24px rgba(0, 245, 212, 0.7); /* Intense neon glow effect */
+}
+
+/* Footer Contact and Menu */
+.footer-contact li {
+    color: #c0c0c0; /* Light gray text */
+    z-index: 1;
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.footer-contact li span {
+    color: #00f5d4; /* Neon cyan for labels */
+}
+
+.footer-contact li {
+    color: #ffffff; /* Default text color */
+    transition: color 0.3s, text-shadow 0.3s;
+}
+
+.footer-contact li:hover {
+    color: #00d2ff; /* Electric blue color */
+    text-shadow: 0 0 10px #00d2ff, 0 0 20px #00d2ff, 0 0 30px #00d2ff, 0 0 40px #00d2ff; /* Neon glow effect */
+}
+
+
+.footer-menu li a {
+    color: #d0d0d0; /* Off-white for links */
+    z-index: 1;
+    position: relative;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+.footer-menu li a:hover {
+    color: #00f5d4; /* Neon cyan */
+    text-shadow: 0 0 12px rgba(0, 245, 212, 0.7); /* Neon glow on hover */
+}
+
+/* Footer Subscribe */
+.footer-subscribe input[type="text"] {
+    background-color: #101010; /* Sleek dark input */
+    color: #d0d0d0; /* Light gray for readability */
+    border: 1px solid #00f5d4; /* Neon border */
+    padding: 12px;
+    margin-right: 10px;
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.8); /* Enhanced glow */
+    z-index: 1;
+    position: relative;
+}
+
+.footer-subscribe button {
+    background: linear-gradient(135deg, #00f5d4, #00d2ff); /* Cyan to electric blue gradient */
+    color: #101010; /* Dark button text */
+    border: none;
+    padding: 12px 24px;
+    cursor: pointer;
+    box-shadow: 0 0 35px rgba(0, 245, 212, 0.9); /* Stronger glow */
+    z-index: 1;
+    position: relative;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.footer-subscribe button:hover {
+    transform: scale(1.1); /* Slight scaling on hover */
+    box-shadow: 0 0 50px rgba(0, 245, 212, 1); /* Intense neon glow */
+}
+
+/* Copyright Section */
+.copyright-area {
+    background-color: #0d0d0d; /* Slightly lighter dark background */
+    color: #7e7e7e; /* Light gray text */
+    padding: 20px;
+
+}
+
+.copyright-area p {
+    margin: 0;
+}
+
+.copyright-area a {
+    color: #00f5d4; /* Neon cyan links */
+    text-decoration: none;
+}
+
+.copyright-area a:hover {
+    text-decoration: underline;
+}
+
+/* Scroll Up */
+#scrollUp {
+  background: #101010; /* Sleek dark background */
+  bottom: 15px;
+  box-shadow: 0 0 20px rgba(0, 245, 212, 0.6); /* Enhanced neon glow */
+  color: #00f5d4; /* Neon cyan text */
+  font-size: 22px; /* Slightly larger for readability */
+  height: 50px;
+  line-height: 50px;
+  border-radius: 50%; /* Circular button */
+  position: fixed;
+  right: 15px;
+  text-align: center;
+  transition: all 0.3s ease;
+  width: 50px;
+  z-index: 200;
+}
+
+#scrollUp:hover {
+  background: #00f5d4; /* Neon cyan hover effect */
+  color: #101010; /* Dark text on hover */
+  box-shadow: 0 0 30px rgba(0, 245, 212, 1); /* Intense neon glow */
+  transform: scale(1.1); /* Slight scaling on hover for interaction */
+}
+
+#scrollUp::before {
+  font-family: Arial, sans-serif;
+  color: #00f5d4;
+  font-size: 20px;
+  display: inline-block;
+  transition: transform 0.3s ease;
+}
+
+#scrollUp:hover::before {
+  transform: translateY(-4px); /* Smooth upward movement on hover */
+}
+
+/* Footer Social */
+.footer-social {
+    display: flex;
+    flex-direction: column; /* Align social icons vertically */
+}
+
+.footer-social a {
+    color: #00ffff; /* Adjust text color */
+    text-decoration: none;
+    display: flex;
+    align-items: center;
+    font-size: 18px; /* Slightly larger font size */
+    transition: color 0.3s, text-shadow 0.3s; /* Smooth transition for hover effect */
+}
+
+.footer-social .social-icon {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px; /* More space between icons */
+    position: relative; /* Required for the text shadow */
+}
+
+.footer-social .social-icon i {
+    margin-right: 12px; /* Increased space between icon and text */
+    font-size: 24px; /* Larger icon size */
+    color: #00ffff; /* Neon cyan color for icons */
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; /* Intense neon glow effect */
+}
+
+/* Neon effect on hover */
+.footer-social a:hover {
+    color: #00ffff; /* Neon cyan color for hover */
+    text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff, 0 0 40px #00ffff; /* Intense neon glow effect */
+}
+
+.neon-text {
+    color: #00ffff; /* Neon cyan color */
+    font-size: 1.2em; /* Slightly larger font size for better visibility */
+    text-shadow: 
+        0 0 5px #00ffff, /* Neon cyan glow */
+        0 0 10px #00ffff, 
+        0 0 15px #00ffff, 
+        0 0 20px #00ffff, 
+        0 0 25px #00ffff,
+        0 0 30px #00ffff;
+}
+
+
+
+        #cursor-trail {
+            position: fixed; /* Ensure it's positioned relative to the viewport */
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 1; /* Make sure it's behind the cursor */
+        }
+
+        .trail-line {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: transparent;
+            z-index: 0; /* Make sure trail elements are behind */
+        }
+
+        @keyframes neonTrail {
+            0% {
+                opacity: 1;
+                width: 0;
+                height: 0;
+                box-shadow: 0 0 15px rgba(0, 255, 255, 0.9),  /* Bright Cyan */
+                            0 0 25px rgba(0, 255, 127, 0.9),  /* Neon Green */
+                            0 0 35px rgba(255, 0, 255, 0.9),  /* Vibrant Magenta */
+                            0 0 50px rgba(255, 255, 0, 0.9),  /* Bright Yellow */
+                            0 0 70px rgba(255, 0, 127, 0.9);  /* Hot Pink */
+            }
+            100% {
+                opacity: 0;
+                width: 50px;
+                height: 50px;
+                transform: translate(50px, 30px) rotate(180deg); /* Curvy movement */
+                box-shadow: none;
+            }
+        }
+
+
+
+
+
+    </style>
+</head>
+	<body>	
+		<!-- WRAPPER START -->
+		<div class="wrapper bg-dark-white">
+
+			<!-- HEADER-AREA START -->
+			<header id="sticky-menu" class="header header-2">
+				<div class="header-area">
+                    <div id="cursor-trail"></div>
+					<div class="container-fluid">
+						<div class="row">
+							<div class="col-md-4 offset-md-4 col-7">
+								<div class="logo text-md-center">
+									<a href="/"><span style="font-size: 25px; line-height: 60px;">StockVisionIQ</span></a>
+								</div>
+							</div>
+							<div class="col-md-4 col-5">
+								<div class="mini-cart text-end">
+									
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<!-- MAIN-MENU START -->
+				<div class="menu-toggle menu-toggle-2 hamburger hamburger--emphatic d-none d-md-block">
+					<div class="hamburger-box">
+						<div class="hamburger-inner"></div>
+					</div>
+				</div>
+				<div class="main-menu  d-none d-md-block">
+                    <div id="cursor-trail"></div>
+					<nav>
+						<ul>
+                            <li><a href="/">Home</a></li>
+							<li><a href="{% url 'about' %}">About Us</a></li>
+                            <li><a href="{% url 'faq' %}">FAQ</a></li>
+							{% if request.user.is_authenticated %}
+								<li><a href="{% url 'prediction' %}">Dashboard </a></li>
+								<li><a href="{% url 'logout' %}">Logout</a></li>
+							{% else %}
+								<li><a href="{% url 'login' %}">Login</a></li>
+							{% endif %}
+
+						</ul>
+					</nav>
+				</div>
+				<!-- MAIN-MENU END -->
+			</header>
+			<!-- HEADER-AREA END -->
+
+			<!-- Mobile-menu end -->
+			{% block content %}
+        	{% endblock %}
+			<!-- FOOTER START -->
+            <footer>
+                <!-- Footer-area start -->
+                <div class="footer-area footer-2">
+                    <div class="container">
+                        <div id="cursor-trail"></div>
+
+                        <script>
+                            const cursorTrail = document.getElementById('cursor-trail');
+                            let trailElements = [];
+                            const trailOffset = 10; // Distance behind the cursor
+                    
+                            document.addEventListener('mousemove', (e) => {
+                                const trailLine = document.createElement('div');
+                                trailLine.className = 'trail-line';
+                                cursorTrail.appendChild(trailLine);
+                                trailElements.push(trailLine);
+                    
+                                // Set position of each trail element with an offset
+                                trailLine.style.top = `${e.clientY + trailOffset}px`; // Offset behind the cursor vertically
+                                trailLine.style.left = `${e.clientX + trailOffset}px`; // Offset behind the cursor horizontally
+                    
+                                // Animate the trail with curvy movement and neon colors
+                                trailLine.style.animation = 'neonTrail 1s forwards';
+                    
+                                // Remove old trail elements after animation completes
+                                setTimeout(() => {
+                                    trailLine.remove();
+                                    trailElements.shift();
+                                }, 1000);
+                    
+                                // Limit the number of active trail elements for performance
+                                if (trailElements.length > 50) {
+                                    trailElements.shift().remove();
+                                }
+                            });
+                        </script>
+                        <div class="row">
+                            <div class="col-lg-3 col-md-6 wow fadeInUp">
+                                <div class="single-footer">
+                                    <h3 class="footer-title ">Contact Us</h3>
+                                    <ul class="footer-contact">
+                                        <li><span>Address :</span>28 Electronic city,<br>Bangalore, IN</li>
+                                        <li><span>Phone :</span>+91 6361584244</li>
+                                        <li><span>Email :</span>support@StockVisionIQ.com</li>
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 wow fadeInLeft">
+                                <div class="single-footer">
+                                    <h3 class="footer-title ">Accounts</h3>
+                                    <ul class="footer-menu">
+                                        {% if request.user.is_authenticated %}
+                                            <li><a href="{% url 'logout' %}"><i class="zmdi zmdi-dot-circle"></i>Sign out</a></li>
+                                        {% else %}
+                                            <li><a href="{% url 'login' %}"><i class="zmdi zmdi-dot-circle"></i>Sign In</a></li>
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 wow fadeInRight">
+                                <div class="single-footer newsletter-item">
+                                    <h3 class="footer-title ">Email Newsletters</h3>
+                                    <div class="footer-subscribe">
+                                        <form action="#">
+                                            <input type="text" name="email" placeholder="Email Address..." />
+                                            <button class="button-one1 submit-btn-4" type="submit" data-text="Subscribe">Subscribe</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-lg-3 col-md-6 wow fadeInDown">
+                                <div class="single-footer follow-us">
+                                    <h3 class="footer-title ">Follow Us On</h3>
+                                    <ul class="footer-social">
+                                        <li><a href="#" class="social-icon"><i class="fab fa-facebook-f"></i>Facebook</a></li>
+                                        <li><a href="#" class="social-icon"><i class="fab fa-twitter"></i>Twitter</a></li>
+                                        <li><a href="#" class="social-icon"><i class="fab fa-instagram"></i>Instagram</a></li>
+                                        <li><a href="#" class="social-icon"><i class="fab fa-linkedin-in"></i>LinkedIn</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Footer-area end -->
+                <!-- Copyright-area start -->
+                <div class="copyright-area copyright-2">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="copyright">
+                                    <p class="mb-0">&copy; <a href="/" target="_blank">StockVisionIQ </a> 2024. All Rights Reserved. Proudly developed by <span class="neon-text">Karthik Kiran S</span>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- Copyright-area end -->
+            </footer>
+            <!-- FOOTER END -->
+            
+		<!-- WRAPPER END -->
+
+		<!-- all js here -->
+		<!-- jquery latest version -->
+		<script src="{% static 'store_front/js/vendor/jquery-3.6.0.min.js' %}"></script>
+		<script src="{% static 'store_front/js/vendor/jquery-migrate-3.3.2.min.js' %}"></script>
+		<!-- bootstrap js -->
+		<script src="{% static 'store_front/js/bootstrap.bundle.min.js' %}"></script>
+		<!-- jquery.meanmenu js -->
+		<script src="{% static 'store_front/js/jquery.meanmenu.js' %}"></script>
+		<!-- slick.min js -->
+		<script src="{% static 'store_front/js/slick.min.js' %}"></script>
+		<!-- jquery.treeview js -->
+		<script src="{% static 'store_front/js/jquery.treeview.js' %}"></script>
+		<!-- lightbox.min js -->
+		<script src="{% static 'store_front/js/lightbox.min.js' %}"></script>
+		<!-- jquery-ui js -->
+		<script src="{% static 'store_front/js/jquery-ui.min.js' %}"></script>
+		<!-- jquery.nivo.slider js -->
+		<script src="{% static 'store_front/lib/js/jquery.nivo.slider.js' %}"></script>
+		<script src="{% static 'store_front/lib/home.js' %}"></script>
+		<!-- jquery.nicescroll.min js -->
+		<script src="{% static 'store_front/js/jquery.nicescroll.min.js' %}"></script>
+		<!-- countdon.min js -->
+		<script src="{% static 'store_front/js/countdon.min.js' %}"></script>
+		<!-- wow js -->
+		<script src="{% static 'store_front/js/wow.min.js' %}"></script>
+		<!-- plugins js -->
+		<script src="{% static 'store_front/js/plugins.js' %}"></script>
+		<!-- main js -->
+		<script src="{% static 'store_front/js/main.min.js' %}"></script>
+
+
+
+
+
+        <script>
+            particlesJS("particles-js", {
+                "particles": {
+                    "number": {
+                        "value": 250,
+                        "density": {
+                            "enable": true,
+                            "value_area": 800
+                        }
+                    },
+                    "color": {
+                        "value": "#00ffff"  // Keeping the same color you chose
+                    },
+                    "shape": {
+                        "type": "circle",  // Sticking with circles
+                        "stroke": {
+                            "width": 0,
+                            "color": "#000000"
+                        },
+                        "polygon": {
+                            "nb_sides": 5
+                        }
+                    },
+                    "opacity": {
+                        "value": 0.5,
+                        "random": false,
+                        "anim": {
+                            "enable": true,  // Animation added for smoother transitions
+                            "speed": 2.5,
+                            "opacity_min": 0.2,
+                            "sync": false
+                        }
+                    },
+                    "size": {
+                        "value": 3,
+                        "random": true,
+                        "anim": {
+                            "enable": true,  // Added animation to vary size dynamically
+                            "speed": 20,
+                            "size_min": 0.3,
+                            "sync": false
+                        }
+                    },
+                    "line_linked": {
+                        "enable": true,
+                        "distance": 150,
+                        "color": "#00ffff",  // Keeping the cyan color for linked lines
+                        "opacity": 0.4,
+                        "width": 1.5  // Slightly thicker lines for better visibility
+                    },
+                    "move": {
+                        "enable": true,
+                        "speed": 8,  // Increased speed for faster movement
+                        "direction": "none",
+                        "random": true,
+                        "straight": false,
+                        "out_mode": "bounce",  // Particles will bounce off the walls for a dynamic effect
+                        "bounce": true,
+                        "attract": {
+                            "enable": false,
+                            "rotateX": 600,
+                            "rotateY": 1200
+                        },
+                        "trail": {  // Added trail effect for futuristic movement
+                            "enable": true,
+                            "length": 8,
+                            "fillColor": "#00ffff"  // Same cyan color for the trail
+                        }
+                    }
+                },
+                "interactivity": {
+                    "detect_on": "canvas",
+                    "events": {
+                        "onhover": {
+                            "enable": true,
+                            "mode": "repulse"  // Keeping repulse on hover
+                        },
+                        "onclick": {
+                            "enable": true,
+                            "mode": "push"  // Particles will push away on click
+                        },
+                        "resize": true
+                    },
+                    "modes": {
+                        "grab": {
+                            "distance": 400,
+                            "line_linked": {
+                                "opacity": 1
+                            }
+                        },
+                        "bubble": {
+                            "distance": 400,
+                            "size": 40,
+                            "duration": 2,
+                            "opacity": 0.8,
+                            "speed": 3
+                        },
+                        "repulse": {
+                            "distance": 200,
+                            "duration": 0.4
+                        },
+                        "push": {
+                            "particles_nb": 5
+                        },
+                        "remove": {
+                            "particles_nb": 2
+                        }
+                    }
+                },
+                "retina_detect": true
+            });
+        </script>
+        
+
+	</body>
+
+</html>

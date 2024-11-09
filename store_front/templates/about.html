@@ -1,0 +1,282 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cart_count_bloc %}
+    {{ cart_items }}
+{% endblock %}
+{% block content %}
+    <!-- HEADING-BANNER START -->
+    <div class="heading-banner-area overlay-bg" style="height: 9cm; position: relative;"> <!-- Added position relative -->
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="heading-banner" style="padding-top: 2cm;"> <!-- Adjusted padding -->
+                        <div class="heading-banner-title text-center">
+                            <h2 class="text-neon">Empower Your Stock Decisions with Real-Time Insights</h2>
+                        </div>
+                        <div class="heading-banner-content text-center mt-4">
+                            <p class="text-light">Unlock comprehensive stock details, news, expert insights, and future predictions all in one place.</p>
+                        </div>
+                        <!-- Breadcrumbs positioned at bottom left -->
+                        <div class="breadcumbs pb-15 text-left" style="position: absolute; bottom: 10px; left: 200px;">
+                            <ul class="d-inline-block mb-0" style="list-style: none; padding: 0; margin: 0;">
+                                <li style="display: inline;"><a href="/" class="text-neon">Home</a></li>
+                                <li style="display: inline; margin: 0 5px;"><span class="text-light">></span></li>
+                                <li style="display: inline;" class="text-neon">About Us</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- HEADING-BANNER END -->
+
+    <div class="container-fluid about py-5">
+        <div class="container py-5" id="About">
+            <div class="row g-5 align-items-center">
+                <div class="col-xl-7 wow fadeInLeft" data-wow-delay="0.2s">
+                    <div class="about-content">
+                        <h4 class="text-primary">About Us</h4>
+                        <h1 class="display-5 mb-4">Your Comprehensive Stock Analysis Platform</h1>
+                        <p class="mb-4 paragraph-text">Our platform leverages advanced technologies to provide you with in-depth financial details, real-time news with sentiment analysis, and robust stock comparison tools. Whether you're looking for precise price predictions or analyzing market trends, we've got you covered.</p>
+                        <div class="row g-4">
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <div class="d-flex feature-box">
+                                    <div><i class="fas fa-chart-line fa-3x text-primary"></i></div>
+                                    <div class="ms-4">
+                                        <h4>Accurate Stock Predictions</h4>
+                                        <p>Utilize our Prophet-based algorithm to forecast stock prices with precision.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <div class="d-flex feature-box">
+                                    <div><i class="fa fa-newspaper fa-3x text-primary"></i></div>
+                                    <div class="ms-4">
+                                        <h4>Recent News & Sentiment Analysis</h4>
+                                        <p>Stay informed with the latest news and sentiment analysis for your stocks.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <div class="d-flex feature-box">
+                                    <div><i class="fa fa-exchange-alt fa-3x text-primary"></i></div>
+                                    <div class="ms-4">
+                                        <h4>Compare Stocks</h4>
+                                        <p>Compare financial performance and trends of different stocks.</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6 col-lg-6 col-xl-6">
+                                <div class="d-flex feature-box">
+                                    <div><i class="fa fa-cogs fa-3x text-primary"></i></div>
+                                    <div class="ms-4">
+                                        <h4>Customizable Analysis</h4>
+                                        <p>Adapt forecasts and comparisons to your investment needs and preferences.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
+                    <div class="widget-container rounded bg-dark">
+                        <!-- TradingView Widget -->
+                        <div class="tradingview-widget-container">
+                            <div id="tradingview_1e2b4"></div>
+                            <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" type="text/javascript">
+                            {
+                                "colorTheme": "dark",
+                                "dateRange": "12M",
+                                "showChart": true,
+                                "locale": "en",
+                                "width": "100%",
+                                "height": "600",
+                                "symbol": "NASDAQ:AAPL",
+                                "isTransparent": false,
+                                "showSymbolLogo": true,
+                                "showLegend": true,
+                                "showVolume": true
+                            }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- FAQs End -->
+
+    <style>
+        /* Overall Container Styling */
+        .container-fluid.about {
+            background: #000000;
+            color: #e0e0e0; /* Light text for contrast */
+            padding: 60px 0;
+            border-radius: 15px; /* Rounded corners */
+            box-shadow: 0 0 30px rgba(0, 255, 255, 0.5); /* Strong neon shadow effect */
+            position: relative;
+            overflow: hidden;
+        }
+
+        .heading-banner-area {
+    background: linear-gradient(135deg, #0d0d0d 30%, #001f3f 100%);
+    border: 0;
+    box-shadow: 0 0 80px rgba(0, 255, 255, 0.7); /* Stronger neon glow effect */
+    position: relative;
+    overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Title Glow and Animation */
+.heading-banner-title h2 {
+    font-size: 3rem; /* Larger font size */
+    color: #00ffff;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); /* Enhanced glow */
+    font-family: 'Orbitron', sans-serif;
+    animation: neonGlow 2s ease-in-out infinite alternate; /* Pulsating neon glow */
+}
+
+/* Pulsating glow animation */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 60px rgba(0, 255, 255, 0.8);
+    }
+}
+
+.heading-banner-content p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Adding rotating light beams effect */
+.heading-banner-area:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 200%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent 70%);
+    transform: translateX(-50%);
+    animation: rotateBeams 10s linear infinite; /* Rotating beam animation */
+}
+
+@keyframes rotateBeams {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+.text-neon {
+        color: #00ffff; /* Neon cyan color */
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.6); /* Neon glow effect */
+    }
+/* Optional: Pulsating glow background */
+.neon-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.3);
+    animation: glowPulse 3s infinite alternate;
+    z-index: 1;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+.breadcumbs ul li a {
+    font-size: 1.1rem;
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.breadcumbs ul li a:hover {
+    color: #00bfff;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9), 0 0 15px rgba(0, 191, 255, 0.7);
+}
+
+.heading-banner-area:before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(0, 255, 255, 0.4), 0 0 120px rgba(0, 255, 255, 0.3);
+    animation: floating 5s infinite ease-in-out;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+        /* Content Section */
+        .about-content h4,
+        .about-content h1 {
+            color: #00ffff; /* Neon cyan */
+            text-shadow: 0 0 15px rgba(0, 255, 255, 0.8); /* Neon glow */
+        }
+
+        .paragraph-text {
+            color: #c0c0c0; /* Light gray for better readability */
+            line-height: 1.6;
+            font-size: 1rem; /* Adjust font size */
+        }
+
+        .feature-box {
+            background: rgba(3, 3, 3, 0.1); 
+            padding: 20px; /* Increased padding for better spacing */
+            border-radius: 10px; /* Rounded corners */
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); /* Subtle neon glow */
+            transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition */
+            height: 100%; /* Ensures equal height */
+            display: flex;
+            align-items: center;
+        }
+
+        .feature-box:hover {
+            transform: translateY(-5px); /* Lift effect on hover */
+            box-shadow: 0 0 25px rgba(0, 255, 255, 0.5); /* Enhanced neon glow */
+        }
+
+        .widget-container {
+            background: rgba(0, 0, 0, 0.9); /* Dark background for widget */
+            padding: 20px;
+            border-radius: 15px; /* Rounded corners */
+            border: 2px solid #00ffff; /* Neon cyan border */
+            box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Neon glow */
+        }
+
+        /* Responsive Design */
+        @media (max-width: 767px) {
+            .about-content h1 {
+                font-size: 2rem;
+            }
+
+            .feature-box {
+                padding: 15px;
+            }
+        }
+    </style>
+{% endblock %}

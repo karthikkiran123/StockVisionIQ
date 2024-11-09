@@ -1,0 +1,7 @@
+# Theme settings
+[theme]
+primaryColor = "#00bfff"  # Green
+backgroundColor = "#000000"  # Black
+secondaryBackgroundColor = "#1e1e1e"  # Dark gray (for sidebar background)
+textColor = "#ffffff"  # White
+

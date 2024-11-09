@@ -1,0 +1,325 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cart_count_bloc %}
+    {{ cart_items }}
+{% endblock %}
+{% block content %}
+	<!-- HEADING-BANNER START -->
+	<div class="heading-banner-area overlay-bg" style="height: 9cm; position: relative;"> <!-- Added position relative -->
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12">
+					<div class="heading-banner" style="padding-top: 2cm;"> <!-- Adjusted padding -->
+						<div class="heading-banner-title text-center">
+							<h2 class="text-neon">Empower Your Stock Decisions with Real-Time Insights</h2>
+						</div>
+						<div class="heading-banner-content text-center mt-4">
+							<p class="text-light">Unlock comprehensive stock details, news, expert insights, and future predictions all in one place.</p>
+						</div>
+						<!-- Breadcrumbs positioned at bottom left -->
+						<div class="breadcumbs pb-15 text-left" style="position: absolute; bottom: 10px; left: 200px;">
+							<ul class="d-inline-block mb-0" style="list-style: none; padding: 0; margin: 0;">
+								<li style="display: inline;"><a href="/" class="text-neon">Home</a></li>
+								<li style="display: inline; margin: 0 5px;"><span class="text-light">></span></li>
+								<li style="display: inline;" class="text-neon">FAQ</li>
+							</ul>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	
+	<!-- HEADING-BANNER END -->
+	<!-- SHOPPING-CART-AREA START -->
+
+	<div class="faq-section" id="faq">
+
+		<div class="container pb-5 overflow-hidden">
+			<div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+				<h4 class="text-neon">FAQs</h4>
+				<h1 class="display-5 mb-4 text-neon">Frequently Asked Questions</h1>
+				<p class="mb-0 text-light">Find answers to the most commonly asked questions about our stock market prediction system powered by Prophet.</p>
+			</div>
+			<div class="row g-5 align-items-center">
+				<div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+					<div class="accordion accordion-flush" id="accordionFlushSection">
+						<div class="accordion-item border-0 bg-dark text-light">
+							<h2 class="accordion-header" id="flush-headingOne">
+								<button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+									What is this Stock Analysis and Prediction System?
+								</button>
+							</h2>
+							<div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushSection">
+								<div class="accordion-body">This system provides comprehensive tools for analyzing and predicting stock prices, offering real-time updates, historical data analysis, and predictions using advanced models.</div>
+							</div>
+						</div>
+						<div class="accordion-item border-0 bg-dark text-light">
+							<h2 class="accordion-header" id="flush-headingTwo">
+								<button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+									How do I use the stock prediction feature?
+								</button>
+							</h2>
+							<div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushSection">
+								<div class="accordion-body">Enter the stock ticker symbol in the input field, set the number of days for the forecast using the slider, and view the predicted prices and confidence intervals.</div>
+							</div>
+						</div>
+						<div class="accordion-item border-0 bg-dark text-light">
+							<h2 class="accordion-header" id="flush-headingThree">
+								<button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+									How can I compare multiple stocks?
+								</button>
+							</h2>
+							<div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushSection">
+								<div class="accordion-body">In the "Compare Stocks" section, enter multiple stock tickers and select a date range. The system will display comparative metrics such as closing prices and moving averages.</div>
+							</div>
+						</div>
+						<div class="accordion-item border-0 bg-dark text-light">
+							<h2 class="accordion-header" id="flush-headingFour">
+								<button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+									What data sources are used?
+								</button>
+							</h2>
+							<div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushSection">
+								<div class="accordion-body">The system uses Yahoo Finance for stock data, NewsAPI for latest news, and VADER Sentiment Analysis for sentiment analysis. Prophet is used for time series forecasting.</div>
+							</div>
+						</div>
+						<div class="accordion-item border-0 bg-dark text-light">
+							<h2 class="accordion-header" id="flush-headingFive">
+								<button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+									How accurate are the stock predictions?
+								</button>
+							</h2>
+							<div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushSection">
+								<div class="accordion-body">Predictions are based on historical data and advanced models. While designed to provide insights, they are not guaranteed and should be used with other financial analyses.</div>
+							</div>
+						</div>
+						<div class="accordion-item border-0 bg-dark text-light">
+							<h2 class="accordion-header" id="flush-headingSix">
+								<button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+									Can I download the comparison data?
+								</button>
+							</h2>
+							<div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushSection">
+								<div class="accordion-body">Yes, you can download the comparison data as a CSV file from the "Compare Stocks" section by clicking the "Download Comparison Data" button.</div>
+							</div>
+						</div>
+						
+					</div>
+				</div>
+				<div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+					<div class="rounded">
+						<img src="{% static 'store_front/img/gg/ggg.jpg' %}" class="img-fluid w-100" alt="Stock Analysis">
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- FAQs End -->
+	
+	<style>
+
+.text-neon {
+        color: #00ffff; /* Neon cyan color */
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.6); /* Neon glow effect */
+    }
+/* FAQ Section Styling */
+.faq-section {
+    background-color: #000000; /* Dark background to complement neon colors */
+    color: #e0e0e0; /* Light text for contrast */
+    padding: 50px 0;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); /* Enhanced neon shadow effect */
+}
+
+/* FAQ Section Titles */
+.faq-section h4 {
+    color: #00ffff; /* Neon cyan */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.9), 0 0 20px rgba(0, 255, 255, 0.7); /* Strong neon glow for titles */
+}
+
+.faq-section h1 {
+    color: #00ffff; /* Neon cyan */
+    text-shadow: 0 0 15px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 0.8); /* Intensified glow for main title */
+}
+
+/* Accordion Styling */
+.accordion-flush {
+    background-color: #0d0d0d; /* Dark background */
+    border-radius: 50px;
+    padding: 20px;
+}
+
+
+.accordion-button {
+    background-color: #000000; /* Black background for accordion buttons */
+    color: #00ffff; /* Neon cyan text for readability */
+    border: none;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.9), 0 0 20px rgba(0, 255, 255, 0.5); /* Neon cyan glow effect */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-button:hover {
+    color: #00bfff; /* Lighter neon cyan text on hover */
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9), 0 0 20px rgba(0, 191, 255, 0.5); /* Lighter neon cyan glow effect on hover */
+}
+
+
+.accordion-button:not(.collapsed) {
+    background-color: #00ffff; /* Neon cyan when active */
+    color: #121212; /* Dark text for better readability */
+    text-shadow: 0 0 15px rgba(0, 255, 255, 1), 0 0 25px rgba(0, 255, 255, 0.8); /* Enhanced glow when active */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 1); /* Brighter glow when active */
+}
+
+
+
+
+.accordion-body {
+    background-color: #1c1c1c; /* Dark background for the content area */
+    color: #00ffff; /* Neon cyan text for readability */
+    box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.4); /* Inner glow effect */
+}
+
+/* Accordion Items */
+.accordion-item {
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Rounded corners for accordion items */
+    margin-bottom: 15px; /* Space between accordion items */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); /* Outer glow effect for items */
+}
+
+.accordion-item:last-child {
+    margin-bottom: 0; /* No margin for the last item */
+}
+
+/* Image Styling */
+.faq-section img {
+    border-radius: 15px; /* Slightly increased border radius for more rounded corners */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7), /* Neon cyan glow */
+                0 0 10px rgba(0, 255, 255, 0.5); /* Subtle additional glow */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.faq-section img:hover {
+    transform: scale(1.05); /* Slight zoom effect on hover */
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.9), /* Enhanced neon cyan glow on hover */
+                0 0 20px rgba(0, 255, 255, 0.6); /* Additional glow effect */
+}
+
+	</style>
+
+<style>
+	/* Futuristic Heading Banner Styling */
+	.heading-banner-area {
+		background: linear-gradient(135deg, #0d0d0d 30%, #001f3f 100%);
+		border: 0;
+		box-shadow: 0 0 80px rgba(0, 255, 255, 0.7); /* Stronger neon glow effect */
+		position: relative;
+		overflow: hidden;
+		padding-top: 20px;
+		padding-bottom: 20px;
+	}
+	
+	/* Title Glow and Animation */
+	.heading-banner-title h2 {
+		font-size: 3rem; /* Larger font size */
+		color: #00ffff;
+		text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); /* Enhanced glow */
+		font-family: 'Orbitron', sans-serif;
+		animation: neonGlow 2s ease-in-out infinite alternate; /* Pulsating neon glow */
+	}
+	
+	/* Pulsating glow animation */
+	@keyframes neonGlow {
+		0% {
+			text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.5);
+		}
+		100% {
+			text-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 60px rgba(0, 255, 255, 0.8);
+		}
+	}
+	
+	.heading-banner-content p {
+		font-size: 1.2rem;
+		color: #e0e0e0;
+		text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+	}
+	
+	/* Adding rotating light beams effect */
+	.heading-banner-area:after {
+		content: '';
+		position: absolute;
+		top: 0;
+		left: 50%;
+		width: 200%;
+		height: 100%;
+		background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent 70%);
+		transform: translateX(-50%);
+		animation: rotateBeams 10s linear infinite; /* Rotating beam animation */
+	}
+	
+	@keyframes rotateBeams {
+		0% {
+			transform: translateX(-50%) rotate(0deg);
+		}
+		100% {
+			transform: translateX(-50%) rotate(360deg);
+		}
+	}
+	
+	/* Optional: Pulsating glow background */
+	.neon-glow {
+		position: absolute;
+		width: 100%;
+		height: 100%;
+		top: 0;
+		left: 0;
+		background: rgba(0, 255, 255, 0.1);
+		box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.3);
+		animation: glowPulse 3s infinite alternate;
+		z-index: 1;
+	}
+	
+	@keyframes glowPulse {
+		0% { opacity: 0.8; }
+		100% { opacity: 1; }
+	}
+	
+	.breadcumbs ul li a {
+		font-size: 1.1rem;
+		color: #00ffff;
+		text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+		transition: color 0.3s ease;
+	}
+	
+	.breadcumbs ul li a:hover {
+		color: #00bfff;
+		text-shadow: 0 0 10px rgba(0, 191, 255, 0.9), 0 0 15px rgba(0, 191, 255, 0.7);
+	}
+	
+	.heading-banner-area:before {
+		content: '';
+		position: absolute;
+		top: -50px;
+		right: -50px;
+		width: 200px;
+		height: 200px;
+		background: rgba(0, 255, 255, 0.1);
+		border-radius: 50%;
+		box-shadow: 0 0 60px rgba(0, 255, 255, 0.4), 0 0 120px rgba(0, 255, 255, 0.3);
+		animation: floating 5s infinite ease-in-out;
+	}
+	
+	@keyframes floating {
+		0%, 100% {
+			transform: translateY(0);
+		}
+		50% {
+			transform: translateY(-20px);
+		}
+	}
+	</style>
+	
+{% endblock %}

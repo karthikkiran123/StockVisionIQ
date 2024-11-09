@@ -1,0 +1,485 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <!-- [Head] start -->
+  <head>
+    <title>ReCraftify | Admin</title>
+    <!-- [Meta] -->
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width,initial-scale=1,user-scalable=0,minimal-ui"
+    />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <!-- [Font] Family -->
+    <link
+      rel="stylesheet"
+      href="https://ableproadmin.com/assets/fonts/inter/inter.css"
+      id="main-font-link"
+    />
+    <!-- [Tabler Icons] https://tablericons.com -->
+    <link
+      rel="stylesheet"
+      href="https://ableproadmin.com/assets/fonts/tabler-icons.min.css"
+    />
+    <!-- [Feather Icons] https://feathericons.com -->
+    <link
+      rel="stylesheet"
+      href="https://ableproadmin.com/assets/fonts/feather.css"
+    />
+    <!-- [Font Awesome Icons] https://fontawesome.com/icons -->
+    <link
+      rel="stylesheet"
+      href="https://ableproadmin.com/assets/fonts/fontawesome.css"
+    />
+    <!-- [Material Icons] https://fonts.google.com/icons -->
+    <link
+      rel="stylesheet"
+      href="https://ableproadmin.com/assets/fonts/material.css"
+    />
+    <!-- [Template CSS Files] -->
+    <link
+      rel="stylesheet"
+      href="https://ableproadmin.com/assets/css/style.css"
+      id="main-style-link"
+    />
+    <link
+      rel="stylesheet"
+      href="https://ableproadmin.com/assets/css/style-preset.css"
+    /></head
+  ><!-- [Head] end --><!-- [Body] Start -->
+  <body
+    data-pc-preset="preset-1"
+    data-pc-sidebar-caption="true"
+    data-pc-layout="vertical"
+    data-pc-direction="ltr"
+    data-pc-theme_contrast=""
+    data-pc-theme="light"
+  >
+    <!-- [ Pre-loader ] start -->
+    <div class="page-loader"><div class="bar"></div></div>
+    <!-- [ Pre-loader ] End --><!-- [ Sidebar Menu ] start -->
+    <nav class="pc-sidebar">
+      <div class="navbar-wrapper">
+        <div class="m-header">
+          <a href="{% url 'dashboard' %}" class="b-brand text-primary" style="font-size: 20px;">
+            ReCraftify
+        </a>
+        </div>
+        {% if login %}
+          <div class="navbar-content">
+            <div class="card pc-user-card">
+              <div class="card-body">
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    <img
+                      src="https://ableproadmin.com/assets/images/user/avatar-1.jpg"
+                      alt="user-image"
+                      class="user-avtar wid-45 rounded-circle"
+                    />
+                  </div>
+                  <div class="flex-grow-1 ms-3 me-2">
+                    <h6 class="mb-0">{{ user.first_name }} {{ user.last_name }}</h6>
+                    <small>{{ user.email }}</small>
+                  </div>
+                  <a
+                    class="btn btn-icon btn-link-secondary avtar"
+                    data-bs-toggle="collapse"
+                    href="#pc_sidebar_userlink"
+                    ><svg class="pc-icon">
+                      <use xlink:href="#custom-sort-outline"></use></svg></a>
+                </div>
+                <div class="collapse pc-user-links" id="pc_sidebar_userlink">
+                  <div class="pt-3">
+                    <a href="{% url 'admin_logout' %}"
+                      ><i class=""></i> <span>Logout</span></a
+                    >
+                  </div>
+                </div>
+              </div>
+            </div>
+            <ul class="pc-navbar">
+              <li class="pc-item pc-caption"><label>Navigation</label></li>
+              <li class="pc-item">
+                <a
+                  href="{% url 'orders' %}"
+                  class="pc-link"
+                  ><span class="pc-micon"
+                    ><svg class="pc-icon">
+                      <use xlink:href="#custom-story"></use>
+                    </svg> </span
+                  ><span class="pc-mtext">Orders</span></a
+                >
+              </li>
+              {% if user.profiles.last.role == "admin" %}
+                <li class="pc-item">
+                  <a
+                    href="{% url 'admin_users' %}"
+                    class="pc-link"
+                    ><span class="pc-micon"
+                      ><svg class="pc-icon">
+                        <use xlink:href="#custom-user"></use>
+                      </svg> </span
+                    ><span class="pc-mtext">User</span></a
+                  >
+                </li>
+              {% endif %}
+              <li class="pc-item pc-hasmenu">
+                <a href="#!" class="pc-link"
+                  ><span class="pc-micon"
+                    ><svg class="pc-icon">
+                      <use xlink:href="#custom-mouse-circle"></use>
+                    </svg> </span
+                  ><span class="pc-mtext">Products</span
+                  ><span class="pc-arrow"
+                    ><i data-feather="chevron-right"></i></span
+                ></a>
+                <ul class="pc-submenu">
+                  <li class="pc-item">
+                    <a
+                      class="pc-link"
+                      href="{% url 'admin_products' 'new' %}"
+                      >New</a
+                    >
+                  </li>
+                  <li class="pc-item">
+                    <a
+                      class="pc-link"
+                      href="{% url 'admin_products' 'used' %}"
+                      >Used</a
+                    >
+                  </li>
+                  <li class="pc-item">
+                    <a
+                      class="pc-link"
+                      href="{% url 'admin_products' 'scrapyard' %}"
+                      >Scrapyard</a
+                    >
+                  </li>
+                  {% if user.profiles.last.role == "admin" %}
+                    <li class="pc-item">
+                      <a
+                        class="pc-link"
+                        href="{% url 'admin_products' 'reported' %}"
+                        >Reported</a
+                      >
+                    </li>
+                  {% endif %}
+                </ul>
+              </li>
+            </ul>
+          </div>
+        {% endif %}
+      </div>
+    </nav>
+    <!-- [ Sidebar Menu ] end --><!-- [ Header Topbar ] start -->
+    <header class="pc-header">
+      <div class="header-wrapper">
+        <!-- [Mobile Media Block] start -->
+        <div class="me-auto pc-mob-drp">
+          <ul class="list-unstyled">
+            <!-- ======= Menu collapse Icon ===== -->
+            <li class="pc-h-item pc-sidebar-collapse">
+              <a href="#" class="pc-head-link ms-0" id="sidebar-hide"
+                ><i class="ti ti-menu-2"></i
+              ></a>
+            </li>
+            <li class="pc-h-item pc-sidebar-popup">
+              <a href="#" class="pc-head-link ms-0" id="mobile-collapse"
+                ><i class="ti ti-menu-2"></i
+              ></a>
+            </li>
+          </ul>
+        </div>
+        <!-- [Mobile Media Block end] -->
+        <div class="ms-auto">
+          <ul class="list-unstyled">
+            <li class="dropdown pc-h-item">
+              <a
+                class="pc-head-link dropdown-toggle arrow-none me-0"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="false"
+                aria-expanded="false"
+                ><svg class="pc-icon">
+                  <use xlink:href="#custom-sun-1"></use></svg></a>
+              <div class="dropdown-menu dropdown-menu-end pc-h-dropdown">
+                <a
+                  href="#!"
+                  class="dropdown-item"
+                  onclick="layout_change('dark')"
+                  ><svg class="pc-icon">
+                    <use xlink:href="#custom-moon"></use>
+                  </svg>
+                  <span>Dark</span> </a
+                ><a
+                  href="#!"
+                  class="dropdown-item"
+                  onclick="layout_change('light')"
+                  ><svg class="pc-icon">
+                    <use xlink:href="#custom-sun-1"></use>
+                  </svg>
+                  <span>Light</span> </a
+                ><a
+                  href="#!"
+                  class="dropdown-item"
+                  onclick="layout_change_default()"
+                  ><svg class="pc-icon">
+                    <use xlink:href="#custom-setting-2"></use>
+                  </svg>
+                  <span>Default</span></a
+                >
+              </div>
+            </li>
+            <!-- <li class="dropdown pc-h-item">
+              <a
+                class="pc-head-link dropdown-toggle arrow-none me-0"
+                data-bs-toggle="dropdown"
+                href="#"
+                role="button"
+                aria-haspopup="false"
+                aria-expanded="false"
+                ><svg class="pc-icon">
+                  <use xlink:href="#custom-notification"></use>
+                </svg>
+                <span class="badge bg-success pc-h-badge">3</span></a
+              >
+              <div
+                class="dropdown-menu dropdown-notification dropdown-menu-end pc-h-dropdown"
+              >
+                <div
+                  class="dropdown-header d-flex align-items-center justify-content-between"
+                >
+                  <h5 class="m-0">Notifications</h5>
+                  <a href="#!" class="btn btn-link btn-sm">Mark all read</a>
+                </div>
+                <div
+                  class="dropdown-body text-wrap header-notification-scroll position-relative"
+                  style="max-height: calc(100vh - 215px)"
+                >
+                  <p class="text-span">Today</p>
+                  <div class="card mb-2">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <svg class="pc-icon text-primary">
+                            <use xlink:href="#custom-layer"></use>
+                          </svg>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <span class="float-end text-sm text-muted"
+                            >2 min ago</span
+                          >
+                          <h5 class="text-body mb-2">UI/UX Design</h5>
+                          <p class="mb-0">
+                            Lorem Ipsum has been the industry's standard dummy
+                            text ever since the 1500s, when an unknown printer
+                            took a galley of type and scrambled it to make a
+                            type
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-2">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <svg class="pc-icon text-primary">
+                            <use xlink:href="#custom-sms"></use>
+                          </svg>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <span class="float-end text-sm text-muted"
+                            >1 hour ago</span
+                          >
+                          <h5 class="text-body mb-2">Message</h5>
+                          <p class="mb-0">
+                            Lorem Ipsum has been the industry's standard dummy
+                            text ever since the 1500.
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="text-span">Yesterday</p>
+                  <div class="card mb-2">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <svg class="pc-icon text-primary">
+                            <use xlink:href="#custom-document-text"></use>
+                          </svg>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <span class="float-end text-sm text-muted"
+                            >2 hour ago</span
+                          >
+                          <h5 class="text-body mb-2">Forms</h5>
+                          <p class="mb-0">
+                            Lorem Ipsum has been the industry's standard dummy
+                            text ever since the 1500s, when an unknown printer
+                            took a galley of type and scrambled it to make a
+                            type
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-2">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <svg class="pc-icon text-primary">
+                            <use xlink:href="#custom-user-bold"></use>
+                          </svg>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <span class="float-end text-sm text-muted"
+                            >12 hour ago</span
+                          >
+                          <h5 class="text-body mb-2">Challenge invitation</h5>
+                          <p class="mb-2">
+                            <span class="text-dark">Jonny aber</span> invites to
+                            join the challenge
+                          </p>
+                          <button class="btn btn-sm btn-outline-secondary me-2">
+                            Decline
+                          </button>
+                          <button class="btn btn-sm btn-primary">Accept</button>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="card mb-2">
+                    <div class="card-body">
+                      <div class="d-flex">
+                        <div class="flex-shrink-0">
+                          <svg class="pc-icon text-primary">
+                            <use xlink:href="#custom-security-safe"></use>
+                          </svg>
+                        </div>
+                        <div class="flex-grow-1 ms-3">
+                          <span class="float-end text-sm text-muted"
+                            >5 hour ago</span
+                          >
+                          <h5 class="text-body mb-2">Security</h5>
+                          <p class="mb-0">
+                            Lorem Ipsum has been the industry's standard dummy
+                            text ever since the 1500s, when an unknown printer
+                            took a galley of type and scrambled it to make a
+                            type
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="text-center py-2">
+                  <a href="#!" class="link-danger">Clear all Notifications</a>
+                </div>
+              </div>
+            </li> -->
+          </ul>
+        </div>
+      </div>
+    </header>
+    <!-- [ Header ] end --><!-- [ Main Content ] start -->
+    <div class="pc-container">
+      <div class="pc-content">
+        <!-- [ Main Content ] start -->
+        {% block content %} {% endblock %}
+        <!-- [ Main Content ] end -->
+      </div>
+    </div>
+    <!-- [Page Specific JS] start -->
+    <script
+      data-cfasync="false"
+      src="https://ableproadmin.com/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"
+    ></script>
+    <script src="https://ableproadmin.com/assets/js/plugins/apexcharts.min.js"></script>
+    <script src="{% static 'dashboard/js/dashboard.js' %}"></script>
+    <!-- [Page Specific JS] end --><!-- Required Js -->
+    <script src="https://ableproadmin.com/assets/js/plugins/popper.min.js"></script>
+    <script src="https://ableproadmin.com/assets/js/plugins/simplebar.min.js"></script>
+    <script src="https://ableproadmin.com/assets/js/plugins/bootstrap.min.js"></script>
+    <script src="https://ableproadmin.com/assets/js/fonts/custom-font.js"></script>
+    <script src="https://ableproadmin.com/assets/js/pcoded.js"></script>
+    <script src="https://ableproadmin.com/assets/js/plugins/feather.min.js"></script>
+    <script>
+      layout_change("false");
+    </script>
+    <script>
+      layout_theme_contrast_change("false");
+    </script>
+    <script>
+      change_box_container("false");
+    </script>
+    <script>
+      layout_caption_change("true");
+      function floatchart() {
+          
+        new ApexCharts(document.querySelector("#pending-tasks-graph"), {
+        chart: {
+            type: "area",
+            height: 60,
+            stacked: !0,
+            sparkline: { enabled: !0 },
+        },
+        colors: ["#DC2626"],
+        fill: {
+            type: "gradient",
+            gradient: {
+            shadeIntensity: 1,
+            type: "vertical",
+            inverseColors: !1,
+            opacityFrom: 0.5,
+            opacityTo: 0,
+            },
+        },
+        stroke: { curve: "smooth", width: 2 },
+        series: [{ data: [0, 50, 4, 10, 3, 25, 5] }],
+        }).render(),
+        new ApexCharts(document.querySelector("#total-income-graph"), {
+        chart: { height: 320, type: "donut" },
+        series: {{ income_data|safe }},
+        colors: ["#4680FF", "#E58A00", "#2CA87F"],
+        labels: ["Total Income", "Approved", "Pending"],
+        fill: { opacity: [1, 1, 1, 0.3] },
+        legend: { show: !1 },
+        plotOptions: {
+            pie: {
+            donut: {
+                size: "65%",
+                labels: { show: !0, name: { show: !0 }, value: { show: !0 } },
+            },
+            },
+        },
+        dataLabels: { enabled: !1 },
+        responsive: [
+            {
+            breakpoint: 480,
+            options: {
+                plotOptions: {
+                pie: { donut: { size: "65%", labels: { show: !0 } } },
+                },
+            },
+            },
+        ],
+        }).render();
+      }
+    </script>
+    <script>
+      layout_rtl_change("false");
+    </script>
+    <script>
+      preset_change("preset-1");
+    </script>
+    <script>
+      main_layout_change("vertical");
+    </script>
+  </body>
+  <!-- [Body] end -->
+  <!-- Mirrored from ableproadmin.com/dashboard/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Thu, 02 May 2024 17:08:58 GMT -->
+</html>

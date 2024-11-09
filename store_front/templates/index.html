@@ -1,0 +1,427 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cart_count_bloc %}
+    {{ cart_items }}
+{% endblock %}
+{% block content %}
+<!-- SLIDER-AREA START  -->
+<!-- Slider Area Start -->
+<div class="video-background">
+    <video autoplay muted loop>
+        <source src="{% static 'store_front/video/hey.mp4' %}" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
+</div>
+<style>
+
+    
+    /* Container with dark background and neon effects */
+.container-fluid.about,
+.container-fluid.offer-section,
+.faq-section {
+    background-color: #000000; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+    padding: 50px 0;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.4); /* Subtle neon shadow effect */
+}
+
+/* Section titles with neon glow */
+.container-fluid h1,
+.container-fluid h4 {
+    color: #00ffff; /* Neon cyan */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.7); /* Neon glow */
+}
+
+.container-fluid h5 {
+    color: #00ffff;; /* Neon green for icons */
+}
+
+/* Neon hover effect on headings */
+.container-fluid h5:hover {
+    color: #ff00ff; /* Neon pink on hover */
+    text-shadow: 0 0 8px rgba(255, 0, 255, 0.8);
+}
+
+/* Neon icons */
+.container-fluid i {
+    color: #00ff00; /* Neon green for icons */
+    text-shadow: 0 0 8px rgba(0, 255, 0, 0.8);
+}
+
+/* Neon effect on accordion headers */
+.accordion-button {
+    background-color: #1a1a1a;
+    color: #00ffff; /* Neon cyan for headers */
+    text-shadow: 0 0 8px rgba(0, 255, 255, 0.8);
+    border: none;
+}
+
+.accordion-button:not(.collapsed) {
+    background-color: #00ffff; /* Neon cyan on active */
+    color: #0d0d0d;
+}
+
+.accordion-body {
+    background-color: #0d0d0d;
+    color: #e0e0e0;
+}
+
+/* Glowing image effect */
+.faq-section img {
+    box-shadow: 0 0 20px rgba(255, 0, 255, 0.7); /* Neon pink glow for images */
+    border-radius: 10px;
+}
+
+/* Glow effect on offer cards */
+.offer-section .text-center {
+    background-color: #1a1a1a;
+    border-radius: 10px;
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.3); /* Neon cyan shadow */
+    padding: 20px;
+    
+}
+
+.offer-section img {
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5); /* Neon glow for images */
+}
+
+
+/* FAQ Section Styling */
+.faq-section {
+    background-color: #121212; /* Dark background to complement neon colors */
+    color: #e0e0e0; /* Light text for contrast */
+    padding: 50px 0;
+    box-shadow: 0 0 40px rgba(0, 255, 255, 0.6); /* Enhanced neon shadow effect */
+}
+
+/* FAQ Section Titles */
+.faq-section h4 {
+    color: #00ffff; /* Neon cyan */
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.9), 0 0 20px rgba(0, 255, 255, 0.7); /* Strong neon glow for titles */
+}
+
+.faq-section h1 {
+    color: #00ffff; /* Neon cyan */
+    text-shadow: 0 0 15px rgba(0, 255, 255, 1), 0 0 30px rgba(0, 255, 255, 0.8); /* Intensified glow for main title */
+}
+
+/* Accordion Styling */
+.accordion-flush {
+    background-color: #0d0d0d; /* Dark background */
+    border-radius: 50px;
+    padding: 20px;
+    box-shadow: 0 0 40px rgba(1, 153, 150, 0.9); /* Deep purple glow for more intensity */
+}
+
+.accordion-button {
+    background-color: #000000; /* Black background for accordion buttons */
+    color: #00ffff; /* Neon cyan text for readability */
+    border: none;
+    text-shadow: 0 0 10px rgba(0, 255, 255, 0.9), 0 0 20px rgba(0, 255, 255, 0.5); /* Neon cyan glow effect */
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+}
+
+.accordion-button:hover {
+    color: #00bfff; /* Lighter neon cyan text on hover */
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9), 0 0 20px rgba(0, 191, 255, 0.5); /* Lighter neon cyan glow effect on hover */
+}
+
+
+.accordion-button:not(.collapsed) {
+    background-color: #00ffff; /* Neon cyan when active */
+    color: #121212; /* Dark text for better readability */
+    text-shadow: 0 0 15px rgba(0, 255, 255, 1), 0 0 25px rgba(0, 255, 255, 0.8); /* Enhanced glow when active */
+    box-shadow: 0 0 30px rgba(0, 255, 255, 1); /* Brighter glow when active */
+}
+
+
+
+
+.accordion-body {
+    background-color: #1c1c1c; /* Dark background for the content area */
+    color: #00ffff; /* Neon cyan text for readability */
+    box-shadow: inset 0 0 15px rgba(0, 255, 255, 0.4); /* Inner glow effect */
+}
+
+/* Accordion Items */
+.accordion-item {
+    border: none; /* Remove default border */
+    border-radius: 10px; /* Rounded corners for accordion items */
+    margin-bottom: 15px; /* Space between accordion items */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.6); /* Outer glow effect for items */
+}
+
+.accordion-item:last-child {
+    margin-bottom: 0; /* No margin for the last item */
+}
+
+/* Image Styling */
+.faq-section img {
+    border-radius: 10px;
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.7); /* Neon cyan glow for the image */
+}
+
+
+
+.video-background {
+    position: relative;
+    overflow: hidden;
+    max-width: 100%;
+    max-height: 100vh; /* Or another height value that fits your design */
+}
+
+.video-background video {
+    width: 100%;
+    height: auto;
+    max-height: 100vh; /* Or another height value that fits your design */
+    object-fit: cover; /* Ensure the video covers the container without distortion */
+}
+
+.widget-container {
+    background: rgba(0, 0, 0, 0.9); /* Dark background for widget */
+    padding: 20px;
+    border-radius: 15px; /* Rounded corners */
+    border: 2px solid #00ffff; /* Neon cyan border */
+    box-shadow: 0 0 10px rgba(0, 255, 255, 0.5), /* Basic outer glow */
+                0 0 20px rgba(0, 255, 255, 0.3) inset, /* Subtle inset shadow */
+                0 0 5px rgba(0, 255, 255, 0.4); /* Additional glow effect */
+    position: relative;
+    overflow: hidden; /* Ensure that effects don’t overflow */
+    transition: all 0.3s ease; /* Smooth transition for hover effects */
+}
+
+.widget-container:hover {
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.7), /* Enhanced outer glow */
+                0 0 25px rgba(0, 255, 255, 0.5) inset, /* More pronounced inset shadow */
+                0 0 10px rgba(0, 255, 255, 0.6); /* Stronger additional glow effect */
+}
+
+
+</style>
+
+<!-- Slider Area End -->
+
+
+<!-- SLIDER-AREA END -->
+<!-- BANNER-AREA START -->
+
+<!-- About Start -->
+<div class="container-fluid about py-5">
+    <div class="container py-5" id="About">
+        <div class="row g-5 align-items-center">
+            <div class="col-xl-7 wow fadeInLeft" data-wow-delay="0.2s">
+                <div>
+                    <h4 class="text-primary">About Us</h4>
+                    <h1 class="display-5 mb-4">Your Comprehensive Stock Analysis Platform</h1>
+                    <p class="mb-4">Our platform leverages advanced technologies to provide you with in-depth financial details, real-time news with sentiment analysis, and robust stock comparison tools. Whether you're looking for precise price predictions or analyzing market trends, we've got you covered.</p>
+                    <div class="row g-4">
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div class="d-flex">
+                                <div><i class="fas fa-chart-line fa-3x text-primary"></i></div>
+                                <div class="ms-4">
+                                    <h4>Accurate Stock Predictions</h4>
+                                    <p>Utilize our Prophet-based algorithm to forecast stock prices with precision.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div class="d-flex">
+                                <div><i class="fa fa-newspaper fa-3x text-primary"></i></div>
+                                <div class="ms-4">
+                                    <h4>Recent News & Sentiment Analysis</h4>
+                                    <p>Stay informed with the latest news and sentiment analysis for your stocks.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div class="d-flex">
+                                <div><i class="fa fa-exchange-alt fa-3x text-primary"></i></div>
+                                <div class="ms-4">
+                                    <h4>Compare Stocks</h4>
+                                    <p>Compare financial performance and trends of different stocks.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6 col-lg-6 col-xl-6">
+                            <div class="d-flex">
+                                <div><i class="fa fa-cogs fa-3x text-primary"></i></div>
+                                <div class="ms-4">
+                                    <h4>Customizable Analysis</h4>
+                                    <p>Adapt forecasts and comparisons to your investment needs and preferences.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-5 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="bg-primary rounded position-relative overflow-hidden">
+                    <div class="widget-container rounded bg-dark">
+                        <!-- TradingView Widget -->
+                        <div class="tradingview-widget-container">
+                            <div id="tradingview_1e2b4"></div>
+                            <script src="https://s3.tradingview.com/external-embedding/embed-widget-market-overview.js" type="text/javascript">
+                            {
+                                "colorTheme": "dark",
+                                "dateRange": "12M",
+                                "showChart": true,
+                                "locale": "en",
+                                "width": "100%",
+                                "height": "500",
+                                "symbol": "NASDAQ:AAPL",
+                                "isTransparent": false,
+                                "showSymbolLogo": true,
+                                "showLegend": true,
+                                "showVolume": true
+                            }
+                            </script>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- About End -->
+
+
+<!-- Offer Starts -->
+<div class="container-fluid offer-section pb-5"id="Services">
+    <div class="container pb-5">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">Our Offer</h4>
+            <h1 class="display-5 mb-4">Benefits We Provide</h1>
+            <p class="mb-0">Explore how our platform simplifies stock market analysis. Input a stock symbol and get accurate forecasts and predictions for upcoming days, helping you make well-informed investment decisions.</p>
+        </div>
+        <div class="row g-5">
+            <!-- Column 1 -->
+            <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="text-center">
+                    <img src="{% static 'store_front/img/offer/2.jpg' %}" class="img-fluid rounded mb-4" alt="Offer 1">
+                    <h5 class="mb-3">Instant Stock Predictions</h5>
+                    <p>Enter a stock symbol and receive immediate forecasts and predictions for several days ahead, providing you with timely insights.</p>
+                </div>
+            </div>
+            <!-- Column 2 -->
+            <div class="col-md-3 wow fadeInUp" data-wow-delay="0.4s">
+                <div class="text-center">
+                    <img src="{% static 'store_front/img/offer/4.jpg' %}" class="img-fluid rounded mb-4" alt="Offer 2">
+                    <h5 class="mb-3">Detailed Forecast Analysis</h5>
+                    <p>Get detailed analysis of forecast data, including trends and potential market movements to help guide your investment strategy.</p>
+                </div>
+            </div>
+            <!-- Column 3 -->
+            <div class="col-md-3 wow fadeInRight" data-wow-delay="0.6s">
+                <div class="text-center">
+                    <img src="{% static 'store_front/img/offer/3.jpg' %}" class="img-fluid rounded mb-4" alt="Offer 3">
+                    <h5 class="mb-3">User-Friendly Interface</h5>
+                    <p>Experience a seamless and intuitive interface that makes entering stock symbols and viewing forecasts easy and efficient.</p>
+                </div>
+            </div>
+            <!-- Column 4 -->
+            <div class="col-md-3 wow fadeInLeft" data-wow-delay="0.8s">
+                <div class="text-center">
+                    <img src="{% static 'store_front/img/offer/5.jpg' %}" class="img-fluid rounded mb-4" alt="Offer 4">
+                    <h5 class="mb-3">Reliable Data Insights</h5>
+                    <p>Access reliable and accurate data insights, supported by advanced Prophet algorithms, to help you make informed investment decisions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Offer End -->
+
+<!-- FAQs Start -->
+<div class="container-fluid offer-section pb-5" id="faq">
+    <div class="container pb-5 overflow-hidden">
+        <div class="text-center mx-auto pb-5 wow fadeInUp" data-wow-delay="0.2s" style="max-width: 800px;">
+            <h4 class="text-primary">FAQs</h4>
+            <h1 class="display-5 mb-4 text-neon">Frequently Asked Questions</h1>
+            <p class="mb-0 text-light">Find answers to the most commonly asked questions about our stock market prediction system powered by Prophet.</p>
+        </div>
+        <div class="row g-5 align-items-center">
+            <div class="col-lg-6 wow fadeInLeft" data-wow-delay="0.2s">
+                <div class="accordion accordion-flush" id="accordionFlushSection">
+                    <div class="accordion-item border-0 bg-dark text-light">
+                        <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                What is this Stock Analysis and Prediction System?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushSection">
+                            <div class="accordion-body">This system provides comprehensive tools for analyzing and predicting stock prices, offering real-time updates, historical data analysis, and predictions using advanced models.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 bg-dark text-light">
+                        <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                How do I use the stock prediction feature?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushSection">
+                            <div class="accordion-body">Enter the stock ticker symbol in the input field, set the number of days for the forecast using the slider, and view the predicted prices and confidence intervals.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 bg-dark text-light">
+                        <h2 class="accordion-header" id="flush-headingThree">
+                            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseThree" aria-expanded="false" aria-controls="flush-collapseThree">
+                                How can I compare multiple stocks?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseThree" class="accordion-collapse collapse" aria-labelledby="flush-headingThree" data-bs-parent="#accordionFlushSection">
+                            <div class="accordion-body">In the "Compare Stocks" section, enter multiple stock tickers and select a date range. The system will display comparative metrics such as closing prices and moving averages.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 bg-dark text-light">
+                        <h2 class="accordion-header" id="flush-headingFour">
+                            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFour" aria-expanded="false" aria-controls="flush-collapseFour">
+                                What data sources are used?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFour" class="accordion-collapse collapse" aria-labelledby="flush-headingFour" data-bs-parent="#accordionFlushSection">
+                            <div class="accordion-body">The system uses Yahoo Finance for stock data, NewsAPI for latest news, and VADER Sentiment Analysis for sentiment analysis. Prophet is used for time series forecasting.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 bg-dark text-light">
+                        <h2 class="accordion-header" id="flush-headingFive">
+                            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseFive" aria-expanded="false" aria-controls="flush-collapseFive">
+                                How accurate are the stock predictions?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseFive" class="accordion-collapse collapse" aria-labelledby="flush-headingFive" data-bs-parent="#accordionFlushSection">
+                            <div class="accordion-body">Predictions are based on historical data and advanced models. While designed to provide insights, they are not guaranteed and should be used with other financial analyses.</div>
+                        </div>
+                    </div>
+                    <div class="accordion-item border-0 bg-dark text-light">
+                        <h2 class="accordion-header" id="flush-headingSix">
+                            <button class="accordion-button collapsed " type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseSix" aria-expanded="false" aria-controls="flush-collapseSix">
+                                Can I download the comparison data?
+                            </button>
+                        </h2>
+                        <div id="flush-collapseSix" class="accordion-collapse collapse" aria-labelledby="flush-headingSix" data-bs-parent="#accordionFlushSection">
+                            <div class="accordion-body">Yes, you can download the comparison data as a CSV file from the "Compare Stocks" section by clicking the "Download Comparison Data" button.</div>
+                        </div>
+                    </div>
+                    
+                </div>
+            </div>
+            <div class="col-lg-6 wow fadeInRight" data-wow-delay="0.2s">
+                <div class="rounded">
+                    <img src="{% static 'store_front/img/gg/ggg.jpg' %}" class="img-fluid w-100" alt="Stock Analysis">
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- FAQs End -->
+
+
+
+
+
+
+
+{% endblock %}

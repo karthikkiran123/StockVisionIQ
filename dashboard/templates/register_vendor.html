@@ -1,0 +1,74 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Register Vendor</h1>
+        <form action="" method="post">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="name" name="name" required>
+            </div>
+            <div class="mb-3">
+                <label for="email" class="form-label">Email</label>
+                <input type="email" class="form-control" id="email" name="email" required>
+            </div>
+            <div class="mb-3">
+                <label for="contact" class="form-label">Contact</label>
+                <input type="number" maxlength="10" class="form-control" id="contact" name="contact" required>
+            </div>
+            <div class="mb-3">
+                <label for="address" class="form-label">Address</label>
+                <input type="text" class="form-control" id="address" name="address" required>
+            </div>
+            <div class="mb-3">
+                <label for="password" class="form-label">Password</label>
+                <input type="password" class="form-control" id="password" name="password" required>
+                <div id="password-strength" style="margin-bottom: 10px;"></div>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+    </div>
+
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        var passwordInput = document.getElementById('password');
+        var passwordStrength = document.getElementById('password-strength');
+
+        passwordInput.addEventListener('input', function () {
+            var strength = getPasswordStrength(passwordInput.value);
+            passwordStrength.innerHTML = strength.message;
+            passwordStrength.style.color = strength.color;
+        });
+
+        function getPasswordStrength(password) {
+            var strength = { message: "", color: "" };
+            var regexes = [
+                /[a-z]/, // lowercase letter
+                /[A-Z]/, // uppercase letter
+                /[0-9]/, // digit
+                /[^A-Za-z0-9]/ // special character
+            ];
+
+            var passedTests = regexes.map(regex => regex.test(password)).filter(result => result).length;
+
+            if (password.length < 8) {
+                strength.message = "Password too short";
+                strength.color = "red";
+            } else if (passedTests < 3) {
+                strength.message = "Weak password";
+                strength.color = "orange";
+            } else if (passedTests === 3) {
+                strength.message = "Medium strength password";
+                strength.color = "yellow";
+            } else {
+                strength.message = "Strong password";
+                strength.color = "green";
+            }
+
+            return strength;
+        }
+    });
+</script>
+{% endblock %}

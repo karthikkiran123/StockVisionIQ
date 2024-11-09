@@ -1,0 +1,118 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h1>Add Product</h1>
+        <form action="" method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="mb-3">
+                <label for="type" class="form-label">Type</label>
+                <select class="form-select" id="type" name="type" onchange="changeType(this)">
+                    <option value="1">New</option>
+                    <option value="2">Used</option>
+                    <option value="3">Scrapyard</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="name" class="form-label">Name</label>
+                <input type="text" class="form-control" id="textname" name="name" class="name">
+                <select class="form-select" id="selectname" name="name-hide" style="display: none;" onchange="changeName()" class="name" >
+                    <option value="News Paper">News Paper</option>
+                    <option value="E Waste">E Waste</option>
+                    <option value="Plastic">Plastic</option>
+                    <option value="Iron">iriencode</option>
+                    <option value="Others">Others</option>
+                </select>
+            </div>
+            <div class="mb-3">
+                <label for="description" class="form-label">Description</label>
+                <input type="text" class="form-control" id="description" name="description" required>
+            </div>
+            <div class="mb-3" id="qtycontainer" style="display: none;">
+                <label for="Qty" class="form-label">Qty</label>
+                <input type="number" class="form-control" id="Qty" name="qty" onchange="changeQty()" value="1" min="1">
+            </div>
+            <div class="mb-3">
+                <label for="price" class="form-label">Price</label>
+                <input type="number" class="form-control" id="price" name="price" required>
+            </div>
+            <div class="mb-3">
+                <label for="discount" class="form-label">Discount Percent</label>
+                <input type="number" class="form-control" id="discount" name="discount" value="0" required>
+            </div>
+            <div class="mb-3">
+                <label for="image" class="form-label">Image</label>
+                <input type="file" class="form-control" id="image" name="image" required>
+            </div>
+            <div class="mb-3">
+                <input type="checkbox" id="featured" name="featured">
+                <label for="featured" class="form-label">Featured</label>
+            </div>
+            <div class="mb-3">
+                <label for="vendor" class="form-label">Vendor</label>
+                <select class="form-select" id="vendor" name="vendor">
+                    {% for vendor in vendors %}
+                    <option value="{{ vendor.id }}">{{ vendor.name }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
+
+        <script type="text/javascript">
+            function changeType(obj) {
+                var type = obj;
+                var text = document.getElementById('textname');
+                var select = document.getElementById('selectname');
+                var price = document.getElementById('price');
+                var qtycontainer = document.getElementById('qtycontainer');
+                if (type.value === '3' || type.value === 3) {
+                    price.readOnly = true;
+                    text.style.display = 'none';
+                    select.style.display = 'block';
+                    price.value = 100;
+                    text.name = '';
+                    select.name = 'name';
+                    text.name = 'name-hide';
+                    qtycontainer.style.display = 'block';
+                } else {
+                    price.readOnly = false;
+                    text.style.display = 'block';
+                    select.style.display = 'none';
+                    price.value = 0;
+                    select.name = '';
+                    text.name = 'name';
+                    select.name = 'name-hide';
+                    qtycontainer.style.display = 'none';
+                }
+            }
+
+            function changeName() {
+                var name = document.getElementById('selectname');
+                if (name.value === "News Paper") {
+                    document.getElementById('price').value = 10;
+                }
+                else if (name.value === "E Waste") {
+                    document.getElementById('price').value = 100;
+                }
+                else if (name.value === "Plastic") {
+                    document.getElementById('price').value = 80;
+                }
+                else if (name.value === "Iron") {
+                    document.getElementById('price').value = 40;
+                }
+                else if (name.value === "Others") {
+                    document.getElementById('price').value = 30;
+                }
+            }
+
+            function changeQty() {
+                var qty = document.getElementById('Qty');
+                var price = document.getElementById('price').value
+                document.getElementById('price').value = qty.value * price;
+            }
+        </script>
+
+    </div>
+</div>
+{% endblock %}

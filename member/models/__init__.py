@@ -1,0 +1,1 @@
+from member.models.profile import Profile

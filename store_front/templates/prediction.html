@@ -1,0 +1,241 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block cart_count_bloc %}
+    {{ cart_items }}
+{% endblock %}
+{% block content %}
+
+<!-- HEADING-BANNER START -->
+<div class="heading-banner-area overlay-bg" style="height: 9cm; position: relative;"> <!-- Added position relative -->
+    <div class="container">
+        <div class="row">
+            <div id="cursor-trail"></div>
+
+            <script>
+                const cursorTrail = document.getElementById('cursor-trail');
+                let trailElements = [];
+                const trailOffset = 10; // Distance behind the cursor
+        
+                document.addEventListener('mousemove', (e) => {
+                    const trailLine = document.createElement('div');
+                    trailLine.className = 'trail-line';
+                    cursorTrail.appendChild(trailLine);
+                    trailElements.push(trailLine);
+        
+                    // Set position of each trail element with an offset
+                    trailLine.style.top = `${e.clientY + trailOffset}px`; // Offset behind the cursor vertically
+                    trailLine.style.left = `${e.clientX + trailOffset}px`; // Offset behind the cursor horizontally
+        
+                    // Animate the trail with curvy movement and neon colors
+                    trailLine.style.animation = 'neonTrail 1s forwards';
+        
+                    // Remove old trail elements after animation completes
+                    setTimeout(() => {
+                        trailLine.remove();
+                        trailElements.shift();
+                    }, 1000);
+        
+                    // Limit the number of active trail elements for performance
+                    if (trailElements.length > 50) {
+                        trailElements.shift().remove();
+                    }
+                });
+            </script>
+            <div class="col-md-12">
+                <div class="heading-banner" style="padding-top: 2cm;"> <!-- Adjusted padding -->
+                    <div class="heading-banner-title text-center">
+                        <h2 class="text-neon">Empower Your Stock Decisions with Real-Time Insights</h2>
+                    </div>
+                    <div class="heading-banner-content text-center mt-4">
+                        <p class="text-light">Unlock comprehensive stock details, news, expert insights, and future predictions all in one place.</p>
+                    </div>
+                    <!-- Breadcrumbs positioned at bottom left -->
+                    <div class="breadcumbs pb-15 text-left" style="position: absolute; bottom: 10px; left: 200px;">
+                        <ul class="d-inline-block mb-0" style="list-style: none; padding: 0; margin: 0;">
+                            <li style="display: inline;"><a href="/" class="text-neon">Home</a></li>
+                            <li style="display: inline; margin: 0 5px;"><span class="text-light">></span></li>
+                            <li style="display: inline;" class="text-neon">Dashboard</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+</div>
+
+<!-- Web app iframe with neon effects -->
+<div class="iframe-wrapper">
+    <iframe src="http://localhost:8501/" style="width: 100%; height: 1000px; border-radius: 10px; border: 1px solid #00ffff; box-shadow: 0 0 15px rgba(0, 255, 255, 0.8); margin-bottom: 10px;" frameborder="0"></iframe>
+</div>
+
+<style>
+
+    .text-neon {
+        color: #00ffff; /* Neon cyan color */
+        text-shadow: 0 0 5px rgba(0, 255, 255, 0.8), 0 0 10px rgba(0, 255, 255, 0.6); /* Neon glow effect */
+    }
+
+        .heading-banner-area {
+    background: linear-gradient(135deg, #0d0d0d 30%, #001f3f 100%);
+    border: 0;
+    box-shadow: 0 0 80px rgba(0, 255, 255, 0.7); /* Stronger neon glow effect */
+    position: relative;
+    overflow: hidden;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+/* Title Glow and Animation */
+.heading-banner-title h2 {
+    font-size: 3rem; /* Larger font size */
+    color: #00ffff;
+    text-shadow: 0 0 15px rgba(0, 255, 255, 0.8), 0 0 30px rgba(0, 255, 255, 0.6); /* Enhanced glow */
+    font-family: 'Orbitron', sans-serif;
+    animation: neonGlow 2s ease-in-out infinite alternate; /* Pulsating neon glow */
+}
+
+/* Pulsating glow animation */
+@keyframes neonGlow {
+    0% {
+        text-shadow: 0 0 15px rgba(0, 255, 255, 0.7), 0 0 30px rgba(0, 255, 255, 0.5);
+    }
+    100% {
+        text-shadow: 0 0 30px rgba(0, 255, 255, 1), 0 0 60px rgba(0, 255, 255, 0.8);
+    }
+}
+
+.heading-banner-content p {
+    font-size: 1.2rem;
+    color: #e0e0e0;
+    text-shadow: 0 0 5px rgba(255, 255, 255, 0.3);
+}
+
+/* Adding rotating light beams effect */
+.heading-banner-area:after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 200%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(0, 255, 255, 0.1), transparent 70%);
+    transform: translateX(-50%);
+    animation: rotateBeams 10s linear infinite; /* Rotating beam animation */
+}
+
+@keyframes rotateBeams {
+    0% {
+        transform: translateX(-50%) rotate(0deg);
+    }
+    100% {
+        transform: translateX(-50%) rotate(360deg);
+    }
+}
+
+/* Optional: Pulsating glow background */
+.neon-glow {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    background: rgba(0, 255, 255, 0.1);
+    box-shadow: 0 0 30px rgba(0, 255, 255, 0.6), 0 0 50px rgba(0, 255, 255, 0.3);
+    animation: glowPulse 3s infinite alternate;
+    z-index: 1;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.8; }
+    100% { opacity: 1; }
+}
+
+.breadcumbs ul li a {
+    font-size: 1.1rem;
+    color: #00ffff;
+    text-shadow: 0 0 5px rgba(0, 255, 255, 0.7);
+    transition: color 0.3s ease;
+}
+
+.breadcumbs ul li a:hover {
+    color: #00bfff;
+    text-shadow: 0 0 10px rgba(0, 191, 255, 0.9), 0 0 15px rgba(0, 191, 255, 0.7);
+}
+
+.heading-banner-area:before {
+    content: '';
+    position: absolute;
+    top: -50px;
+    right: -50px;
+    width: 200px;
+    height: 200px;
+    background: rgba(0, 255, 255, 0.1);
+    border-radius: 50%;
+    box-shadow: 0 0 60px rgba(0, 255, 255, 0.4), 0 0 120px rgba(0, 255, 255, 0.3);
+    animation: floating 5s infinite ease-in-out;
+}
+
+@keyframes floating {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-20px);
+    }
+}
+
+
+/* Neon Effect for iframe container */
+.iframe-wrapper {
+    background-color: #121212; /* Dark background for the iframe container */
+    padding: 2px; /* Optional padding */
+    box-shadow: 0 0 20px rgba(0, 255, 255, 0.5); /* Neon glow effect */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+
+
+
+
+
+#cursor-trail {
+            position: fixed; /* Ensure it's positioned relative to the viewport */
+            pointer-events: none; /* Allow clicks to pass through */
+            z-index: 1; /* Make sure it's behind the cursor */
+        }
+
+        .trail-line {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background-color: transparent;
+            z-index: 0; /* Make sure trail elements are behind */
+        }
+
+        @keyframes neonTrail {
+            0% {
+                opacity: 1;
+                width: 0;
+                height: 0;
+                box-shadow: 0 0 15px rgba(0, 255, 255, 0.9),  /* Bright Cyan */
+                            0 0 25px rgba(0, 255, 127, 0.9),  /* Neon Green */
+                            0 0 35px rgba(255, 0, 255, 0.9),  /* Vibrant Magenta */
+                            0 0 50px rgba(255, 255, 0, 0.9),  /* Bright Yellow */
+                            0 0 70px rgba(255, 0, 127, 0.9);  /* Hot Pink */
+            }
+            100% {
+                opacity: 0;
+                width: 50px;
+                height: 50px;
+                transform: translate(50px, 30px) rotate(180deg); /* Curvy movement */
+                box-shadow: none;
+            }
+        }
+
+
+</style>
+
+{% endblock %}

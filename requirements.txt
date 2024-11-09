@@ -1,0 +1,4 @@
+Django==5.0.1
+django-storages==1.14.2
+pillow==10.3.0
+stripe==9.4.0

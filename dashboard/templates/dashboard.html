@@ -1,0 +1,293 @@
+{% extends 'admin_base.html' %}
+{% block content %}
+<div class="row">
+  <div class="col-12">
+    <div class="card welcome-banner bg-blue-800">
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-6">
+            <div class="p-4">
+              <h2 class="text-white">ReCraftify</h2>
+              <p class="text-white">
+                A Ecommerce platform to buy or sell products online
+              </p>
+              <a
+                href="{% url 'index' %}"
+                class="btn btn-outline-light"
+                >Preview Store</a
+              >
+            </div>
+          </div>
+          <div class="col-sm-6 text-center">
+            <div class="img-welcome-banner">
+              <img
+                src="https://ableproadmin.com/assets/images/widget/welcome-banner.png"
+                alt="img"
+                class="img-fluid"
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body border-bottom pb-0">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="mb-0">Recent Transactions</h5>
+          <div class="dropdown">
+            <a
+              class="avtar avtar-s btn-link-secondary dropdown-toggle arrow-none"
+              href="#"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="ti ti-dots-vertical f-18"></i
+            ></a>
+          </div>
+        </div>
+        <ul
+          class="nav nav-tabs analytics-tab"
+          id="myTab"
+          role="tablist"
+        >
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link active"
+              id="analytics-tab-1"
+              data-bs-toggle="tab"
+              data-bs-target="#analytics-tab-1-pane"
+              type="button"
+              role="tab"
+              aria-controls="analytics-tab-1-pane"
+              aria-selected="true"
+            >
+              All Transaction
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="analytics-tab-2"
+              data-bs-toggle="tab"
+              data-bs-target="#analytics-tab-2-pane"
+              type="button"
+              role="tab"
+              aria-controls="analytics-tab-2-pane"
+              aria-selected="false"
+            >
+              Success
+            </button>
+          </li>
+          <li class="nav-item" role="presentation">
+            <button
+              class="nav-link"
+              id="analytics-tab-3"
+              data-bs-toggle="tab"
+              data-bs-target="#analytics-tab-3-pane"
+              type="button"
+              role="tab"
+              aria-controls="analytics-tab-3-pane"
+              aria-selected="false"
+            >
+              Pending
+            </button>
+          </li>
+        </ul>
+      </div>
+      <div class="tab-content" id="myTabContent">
+        <div
+          class="tab-pane fade show active"
+          id="analytics-tab-1-pane"
+          role="tabpanel"
+          aria-labelledby="analytics-tab-1"
+          tabindex="0"
+        >
+          <ul class="list-group list-group-flush">
+            {% for transaction in all_transactions %}
+            <li class="list-group-item">
+                <div class="d-flex align-items-center">
+                  <!-- <div class="flex-shrink-0">
+                    <div class="avtar avtar-s border">AI</div>
+                  </div> -->
+                  <div class="flex-grow-1 ms-3">
+                    <div class="row g-1">
+                      <div class="col-6">
+                        <h6 class="mb-0">To {{ transaction.vendor.name }}</h6>
+                        <p class="text-muted mb-0">
+                          <small>#{{ transaction.order.order_number }}</small>
+                        </p>
+                      </div>
+                      <div class="col-6 text-end">
+                        <h6 class="mb-1">₹ {{ transaction.amount }}</h6>
+                        <!-- <p class="text-danger mb-0">
+                          <i class="ti ti-arrow-down-left"></i> 10.6%
+                        </p> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="analytics-tab-2-pane"
+          role="tabpanel"
+          aria-labelledby="analytics-tab-2"
+          tabindex="0"
+        >
+          <ul class="list-group list-group-flush">
+            {% for transaction in success_transactions %}
+            <li class="list-group-item">
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                    
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <div class="row g-1">
+                      <div class="col-6">
+                        <h6 class="mb-0">To {{ transaction.vendor.name }}</h6>
+                        <p class="text-muted mb-0">
+                          <small>#{{ transaction.order.order_number }}</small>
+                        </p>
+                      </div>
+                      <div class="col-6 text-end">
+                        <h6 class="mb-1">₹ {{ transaction.amount }}</h6>
+                        <!-- <p class="text-success mb-0">
+                          <i class="ti ti-arrow-up-right"></i> 10.6%
+                        </p> -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div
+          class="tab-pane fade"
+          id="analytics-tab-3-pane"
+          role="tabpanel"
+          aria-labelledby="analytics-tab-3"
+          tabindex="0"
+        >
+          <ul class="list-group list-group-flush">
+            {% for transaction in pending_transactions %}
+            <li class="list-group-item">
+                <div class="d-flex align-items-center">
+                  <div class="flex-shrink-0">
+                  </div>
+                  <div class="flex-grow-1 ms-3">
+                    <div class="row g-1">
+                      <div class="col-6">
+                        <h6 class="mb-0">To {{ transaction.vendor.name }}</h6>
+                        <p class="text-muted mb-0">
+                          <small>#{{ transaction.order.order_number }}</small>
+                        </p>
+                      </div>
+                      <div class="col-6 text-end">
+                        <h6 class="mb-1">₹ {{ transaction.amount }}</h6>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </li>
+            {% endfor %}
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-6">
+    <div class="card">
+      <div class="card-body">
+        <div class="d-flex align-items-center justify-content-between">
+          <h5 class="mb-0">Total Income</h5>
+          <div class="dropdown">
+            <a
+              class="avtar avtar-s btn-link-secondary dropdown-toggle arrow-none"
+              href="#"
+              data-bs-toggle="dropdown"
+              aria-haspopup="true"
+              aria-expanded="false"
+              ><i class="ti ti-dots-vertical f-18"></i
+            ></a>
+          </div>
+        </div>
+        <div id="total-income-graph"></div>
+        <div class="row g-3 mt-3">
+          <div class="col-sm-6">
+            <div class="bg-body p-3 rounded">
+              <div class="d-flex align-items-center mb-2">
+                <div class="flex-shrink-0">
+                  <span class="p-1 d-block bg-primary rounded-circle"
+                    ><span class="visually-hidden"
+                      >New alerts</span
+                    ></span
+                  >
+                </div>
+                <div class="flex-grow-1 ms-2">
+                  <p class="mb-0">Income</p>
+                </div>
+              </div>
+              <h6 class="mb-0">
+                ₹ {{ total_income }}
+                <small class="text-muted"
+                  ><i class="ti ti-chevrons-up"></i> </small
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="bg-body p-3 rounded">
+              <div class="d-flex align-items-center mb-2">
+                <div class="flex-shrink-0">
+                  <span class="p-1 d-block bg-warning rounded-circle"
+                    ><span class="visually-hidden"
+                      >New alerts</span
+                    ></span
+                  >
+                </div>
+                <div class="flex-grow-1 ms-2">
+                  <p class="mb-0">Approved</p>
+                </div>
+              </div>
+              <h6 class="mb-0">
+                ₹ {{ approved }}
+                <small class="text-muted"
+                  ><i class="ti ti-chevrons-up"></i> </small
+                >
+              </h6>
+            </div>
+          </div>
+          <div class="col-sm-6">
+            <div class="bg-body p-3 rounded">
+              <div class="d-flex align-items-center mb-2">
+                <div class="flex-shrink-0">
+                  <span class="p-1 d-block bg-success rounded-circle"
+                    ><span class="visually-hidden"
+                      >New alerts</span
+                    ></span
+                  >
+                </div>
+                <div class="flex-grow-1 ms-2">
+                  <p class="mb-0">Pending</p>
+                </div>
+              </div>
+              <h6 class="mb-0">
+                ₹ {{ pending }}
+                <small class="text-muted"
+                  ><i class="ti ti-chevrons-up"></i> </small
+                >
+              </h6>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
