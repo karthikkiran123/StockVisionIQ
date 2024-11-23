@@ -22,7 +22,6 @@ from django.views.static import serve
 
 urlpatterns = [
     path('', include('store_front.urls')),
-    path('admin/', include('dashboard.urls')),
     # path('admin/', admin.site.urls),
 ] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 

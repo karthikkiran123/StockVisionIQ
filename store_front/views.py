@@ -1,10 +1,8 @@
 from django.shortcuts import render, redirect
-from vendor.models import Product
 from datetime import date, datetime
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.models import User
-from store.models import Order
 from scrapify import settings
 import stripe
 
@@ -81,9 +79,4 @@ def logout_user(request):
         pass
     return redirect('index')
 
-def orders(request):
-    if not request.user.is_authenticated:
-        return redirect('index')
-    orders = Order.objects.filter(user=request.user)
-    products = Product.objects.filter(orders__in=orders)
-    return render(request, 'my_orders.html', {'orders': orders, 'products': products})
+

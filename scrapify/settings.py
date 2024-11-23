@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'sk'
+SECRET_KEY = 'django-insecure-k1(oc0tp9_0=hg75y&4r(grsw4l=j9sb2ed+(d5dju1y)1s6x@'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -38,11 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'store',
-    'vendor',
     'store_front',
-    'member',
-    'dashboard',
 ]
 
 MIDDLEWARE = [
@@ -87,8 +83,8 @@ DATABASES = {
 }
 
 # STRIPE PAYMENT
-STRIPE_PUB_KEY = '' # For JavaScript
-STRIPE_SECRET_KEY = ''
+STRIPE_PUB_KEY = 'pk_test_51PAb3ISGrznLoxR7tKSdovBXmU00smKuAecCnpClKpvFXqzFtG391Sl9cqqGjTf5O4BGy8Q5i42sAa5lhkL8wv3200vQRwEQ4T' # For JavaScript
+STRIPE_SECRET_KEY = 'sk_test_51PAb3ISGrznLoxR7t0L1DExTsbc27fAdDdGsx0wkebKo5EvT2DgFP8l5Al80flsZSzKBt3rJ5XmsqyWGpSMV6bGg009LTfBByW'
 
 
 # Password validation
